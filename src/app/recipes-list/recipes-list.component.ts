@@ -8,8 +8,16 @@ import { SearchService } from '../search.service'
 })
 export class RecipesListComponent implements OnInit {
 
-  private query: string = "apple pie";
-  private response: string;
+  query: string = "apple pie";
+  response: string;
+  minCarbs: number;
+  maxCarbs: number;
+  minFat: number;
+  maxFat: number;
+  minProtein: number;
+  maxProtein: number;
+  minCalories: number;
+  maxCalories: number;
 
   constructor(private readonly searchService: SearchService) { }
 
@@ -25,8 +33,23 @@ export class RecipesListComponent implements OnInit {
     });
   }
 
+  searchByMacros() {
+    this.searchService.searchByMacros(this.minCarbs?.toString(), this.maxCarbs?.toString(), 
+                                      this.minFat?.toString(), this.maxFat?.toString(),
+                                      this.minProtein?.toString(), this.maxProtein?.toString(),
+                                      this.minCalories?.toString(), this.maxCalories?.toString()).subscribe((data: string ) => {
+      this.response = data;
+      console.log("response Macros")
+      console.log(this.response);
+      },
+    error => {
+      console.log("DEF");
+
+    });
+  }
+
   ngOnInit(): void {
-    this.search();
+ 
   }
 
 }
