@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 
 import { SearchService } from './search.service';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { LandingComponent } from './landing/landing.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    RecipesListComponent
+    RecipesListComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
