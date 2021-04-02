@@ -67,7 +67,7 @@ router.get('/search', (req, res) => {
 
     console.log("call: " + api);
 
-    axios.get(`${api}apiKey=622bcbed467242e8a1479f233a7f9741`)
+    axios.get(`${api}apiKey=`)
       .then(data => {
         console.log("GOOD");
     
