@@ -1,10 +1,38 @@
-<p>recipes-list works!</p>
-<input type="number" [(ngModel)]="minCarbs" placeholder="minCarbs">
-<input type="number" [(ngModel)]="minFat" placeholder="minFat">
-<input type="number" [(ngModel)]="minProtein" placeholder="minProtein">
-<input type="number" [(ngModel)]="maxCarbs" placeholder="minCarbs">
-<input type="number" [(ngModel)]="maxFat" placeholder="minFat">
-<input type="number" [(ngModel)]="maxProtein" placeholder="minProtein">
-<input type="number" [(ngModel)]="minCalories" placeholder="min calorieos">
-<input type="number" [(ngModel)]="maxCalories" palceholder="max calories">
+<div class="row">
+    <div class="col-3">
+        <label for="minCarbs">Minimum Carbs</label>
+        <input id="minCarbs" type="number" [(ngModel)]="minCarbs" placeholder="Min Carbs">
+    </div>
+    <div class="col-3">
+        <label for="minProtein">Minimum Protein</label>
+        <input id="minProtein" type="number" [(ngModel)]="minProtein" placeholder="Min Protein">
+    </div>
+    <div class="col-3">
+        <label for="minFat">Minimum Fat</label>
+        <input id="minFat" type="number" [(ngModel)]="minFat" placeholder="Min Fat">
+    </div>
+    <div class="col-3">
+        <label for="minCalories">Minimum Calories</label>
+        <input id="minCalories" type="number" [(ngModel)]="minCalories" placeholder="Min Calories">
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <label for="maxCarbs">Maximum Carbs</label>
+        <input id="maxCarbs" type="number" [(ngModel)]="maxCarbs" placeholder="Max Carbs">
+    </div>
+    <div class="col-3">
+        <label for="maxProtein">Maximum Protein</label>
+        <input id="maxProtein" type="number" [(ngModel)]="maxProtein" placeholder="maxProtein">
+    </div>
+    <div class="col-3">
+        <label for="maxFat">Maximum Fat</label>
+        <input id="maxFat" type="number" [(ngModel)]="maxFat" placeholder="Max Fat">
+    </div>
+    <div class="col-3">
+        <label for="maxCalories">Maximum Calories</label>
+        <input id="maxCalories" type="number" [(ngModel)]="maxCalories" palceholder="Max Calories">
+    </div>
+</div>
+
 <button (click)="searchByMacros()">Search By Macros</button>
