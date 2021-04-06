@@ -34,5 +34,16 @@
         <input id="maxCalories" type="number" [(ngModel)]="maxCalories" palceholder="Max Calories">
     </div>
 </div>
+<div class="row" *ngFor="let recipe of recipes">
+    <h3>{{ recipe.title }}</h3>
+    <img src="{{ recipe.image }}">
+    <h5>Nutrients</h5>
+    <ul>
+        <li>Calories: {{ recipe.calories }}</li>
+        <li>Carbs: {{ recipe.carbs }}</li>
+        <li>Fat: {{ recipe.fat }}</li>
+        <li>Protein: {{ recipe.protein }}</li>
+    </ul>
+</div>
 
 <button (click)="searchByMacros()">Search By Macros</button>

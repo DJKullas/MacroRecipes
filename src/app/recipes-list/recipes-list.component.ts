@@ -19,6 +19,8 @@ export class RecipesListComponent implements OnInit {
   minCalories: number;
   maxCalories: number;
 
+  recipes: Object[];
+
   constructor(private readonly searchService: SearchService) { }
 
   search() {
@@ -41,6 +43,8 @@ export class RecipesListComponent implements OnInit {
       this.response = data;
       console.log("response Macros")
       console.log(this.response);
+
+      this.recipes = JSON.parse(JSON.stringify(this.response));
       },
     error => {
       console.log("DEF");
