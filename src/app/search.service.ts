@@ -23,4 +23,8 @@ export class SearchService {
                                                           minCalories: minCalories, maxCalories: maxCalories}});
   }
 
+  getRecipe(recipeId: string) {
+    return this.http.get('/api/recipe', {params: {recipeId: recipeId}});
+  }
+
 }

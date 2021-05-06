@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../search.service'
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-recipes-list',
@@ -21,7 +22,7 @@ export class RecipesListComponent implements OnInit {
 
   recipes: Object[];
 
-  constructor(private readonly searchService: SearchService) { }
+  constructor(private readonly searchService: SearchService, private readonly sanitizer: DomSanitizer) { }
 
   search() {
     this.searchService.search(this.query).subscribe((data: string ) => {
@@ -51,6 +52,10 @@ export class RecipesListComponent implements OnInit {
 
     });
   }
+
+  sanitize(url: string){
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+}
 
   ngOnInit(): void {
  

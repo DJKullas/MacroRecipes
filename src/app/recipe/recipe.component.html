@@ -1,0 +1,14 @@
+<div *ngIf="recipe == null || recipe == undefined; else elseBlock">
+    Loading
+</div>
+
+<ng-template #elseBlock>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ recipe.title }}
+            </div>
+        </div>
+    </div>
+</ng-template>
+

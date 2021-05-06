@@ -46,7 +46,7 @@
     <div class="row" *ngFor="let recipe of recipes">
         <br>
         <div class="col">
-            <h3 class="recipe-title">{{ recipe.title }}</h3>
+            <h3 class="recipe-title"><a href="http://localhost:3000/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3>
             <div class="row">
                 <div class="col-sm">
                     <img src="{{ recipe.image }}">

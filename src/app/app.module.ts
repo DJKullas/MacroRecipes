@@ -8,13 +8,15 @@ import { RecipesListComponent } from './recipes-list/recipes-list.component';
 
 import { SearchService } from './search.service';
 import { HttpClientModule } from '@angular/common/http';
-import { LandingComponent } from './landing/landing.component'
+import { LandingComponent } from './landing/landing.component';
+import { RecipeComponent } from './recipe/recipe.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipesListComponent,
-    LandingComponent
+    LandingComponent,
+    RecipeComponent
   ],
   imports: [
     BrowserModule,
