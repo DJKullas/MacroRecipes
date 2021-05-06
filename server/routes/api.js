@@ -42,7 +42,7 @@ router.get('/search', (req, res) => {
 
   router.get('/searchByMacros', (req, res) => {
 
-    var api = "https://api.spoonacular.com/recipes/findByNutrients?";
+    var api = "https://api.spoonacular.com/recipes/findByNutrients?random=true&";
 
     console.log(req);
 

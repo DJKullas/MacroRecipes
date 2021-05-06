@@ -43,23 +43,52 @@
             <button class="btn btn-primary" (click)="searchByMacros()">Search By Macros</button>
         </form>
     </div>
-    <div class="row" *ngFor="let recipe of recipes">
-        <br>
+    <div class="row" class="recipe-list-item" *ngFor="let recipe of recipes">
         <div class="col">
             <h3 class="recipe-title"><a href="http://localhost:3000/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3>
             <div class="row">
-                <div class="col-sm">
+                <div class="col-xs-3">
                     <img src="{{ recipe.image }}">
                 </div>
-                <div class="col-sm">
-                    <h5>Nutrients</h5>
-                    <ul>
-                        <li>Calories: {{ recipe.calories }}</li>
-                        <li>Carbs: {{ recipe.carbs }}</li>
-                        <li>Fat: {{ recipe.fat }}</li>
-                        <li>Protein: {{ recipe.protein }}</li>
-                    </ul>
+                <div class="col-xs-9">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>Calories: {{ recipe.calories }}</li>
+                                <li>Carbs: {{ recipe.carbs }}</li>
+                                <li>Fat: {{ recipe.fat }}</li>
+                                <li>Protein: {{ recipe.protein }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>Calories: {{ recipe.calories }}</li>
+                                <li>Carbs: {{ recipe.carbs }}</li>
+                                <li>Fat: {{ recipe.fat }}</li>
+                                <li>Protein: {{ recipe.protein }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>Calories: {{ recipe.calories }}</li>
+                                <li>Carbs: {{ recipe.carbs }}</li>
+                                <li>Fat: {{ recipe.fat }}</li>
+                                <li>Protein: {{ recipe.protein }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>Calories: {{ recipe.calories }}</li>
+                                <li>Carbs: {{ recipe.carbs }}</li>
+                                <li>Fat: {{ recipe.fat }}</li>
+                                <li>Protein: {{ recipe.protein }}</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
