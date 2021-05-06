@@ -1,11 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
-
-        </div>   
+        </div>
         <div class="col-sm-9">
-            <h1 class="header">Search All Recipes</h1>  
-        </div> 
+            <h1 class="header">Search All Recipes</h1>
+        </div>
     </div>
     <br>
     <div class="row">
@@ -13,29 +12,35 @@
             <div class="row">
                 <div class="from-group col-sm">
                     <h5 class="input-header" for="minCarbs">Carbs</h5>
-                    <input name="minCarbs" class="form-control" id="minCarbs" type="number" [(ngModel)]="minCarbs" placeholder="Min Carbs">
-                    <input name="maxCarbs" class="form-control" id="maxCarbs" type="number" [(ngModel)]="maxCarbs" placeholder="Max Carbs">
+                    <input name="minCarbs" class="form-control" id="minCarbs" type="number" [(ngModel)]="minCarbs"
+                        placeholder="Min Carbs">
+                    <input name="maxCarbs" class="form-control" id="maxCarbs" type="number" [(ngModel)]="maxCarbs"
+                        placeholder="Max Carbs">
                 </div>
                 <div class="form-group col-sm">
                     <h5 class="input-header" for="minProtein">Protein</h5>
-                    <input name="minProtein" class="form-control" id="minProtein" type="number" [(ngModel)]="minProtein" placeholder="Min Protein">
-                    <input name="maxProtein" class="form-control" id="maxProtein" type="number" [(ngModel)]="maxProtein" placeholder="Max Protein">
+                    <input name="minProtein" class="form-control" id="minProtein" type="number" [(ngModel)]="minProtein"
+                        placeholder="Min Protein">
+                    <input name="maxProtein" class="form-control" id="maxProtein" type="number" [(ngModel)]="maxProtein"
+                        placeholder="Max Protein">
                 </div>
                 <div class="form-group col-sm">
                     <h5 class="input-header" for="minFat">Fat</h5>
-                    <input name="minFat" class="form-control" id="minFat" type="number" [(ngModel)]="minFat" placeholder="Min Fat">
-                    <input name="maxFat" class="form-control" id="maxFat" type="number" [(ngModel)]="maxFat" placeholder="Max Fat">
+                    <input name="minFat" class="form-control" id="minFat" type="number" [(ngModel)]="minFat"
+                        placeholder="Min Fat">
+                    <input name="maxFat" class="form-control" id="maxFat" type="number" [(ngModel)]="maxFat"
+                        placeholder="Max Fat">
                 </div>
                 <div class="form-group col-sm">
                     <h5 class="input-header" for="minCalories">Calories</h5>
-                    <input name="minCalories" class="form-control" id="minCalories" type="number" [(ngModel)]="minCalories" placeholder="Min Calories">
-                    <input name="maxCalories" class="form-control" id="maxCalories" type="number" [(ngModel)]="maxCalories" placeholder="Max Calories">
+                    <input name="minCalories" class="form-control" id="minCalories" type="number"
+                        [(ngModel)]="minCalories" placeholder="Min Calories">
+                    <input name="maxCalories" class="form-control" id="maxCalories" type="number"
+                        [(ngModel)]="maxCalories" placeholder="Max Calories">
                 </div>
             </div>
-          
+
             <button class="btn btn-primary" (click)="searchByMacros()">Search By Macros</button>
-           
-            
         </form>
     </div>
     <div class="row" *ngFor="let recipe of recipes">
@@ -48,22 +53,14 @@
                 </div>
                 <div class="col-sm">
                     <h5>Nutrients</h5>
-                <ul>
-                    <li>Calories: {{ recipe.calories }}</li>
-                    <li>Carbs: {{ recipe.carbs }}</li>
-                    <li>Fat: {{ recipe.fat }}</li>
-                    <li>Protein: {{ recipe.protein }}</li>
-                </ul>
+                    <ul>
+                        <li>Calories: {{ recipe.calories }}</li>
+                        <li>Carbs: {{ recipe.carbs }}</li>
+                        <li>Fat: {{ recipe.fat }}</li>
+                        <li>Protein: {{ recipe.protein }}</li>
+                    </ul>
+                </div>
             </div>
-            
         </div>
-        
     </div>
-        
-        
-    </div>
-    
-
-    
-    
 </div>
