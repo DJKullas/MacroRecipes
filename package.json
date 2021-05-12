@@ -25,6 +25,7 @@
     "bootstrap": "^4.6.0",
     "bootswatch": "^4.6.0",
     "express": "^4.17.1",
+    "fracty": "^1.0.9",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

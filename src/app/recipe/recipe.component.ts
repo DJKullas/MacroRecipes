@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { SearchService } from '../search.service';
+declare var require: any
+const fracty = require('fracty');
 
 @Component({
   selector: 'app-recipe',
@@ -10,19 +12,18 @@ import { SearchService } from '../search.service';
 export class RecipeComponent implements OnInit {
 
   recipeId: string;
-  response: string;
 
   recipe: any;
+  instructions: any;
 
   constructor(private readonly route: ActivatedRoute, private readonly searchService: SearchService) { }
 
   getRecipe(recipeId: string) {
     this.searchService.getRecipe(recipeId).subscribe((data: string ) => {
-      this.response = data;
-      console.log("response Macros")
-      console.log(this.response);
-
-      this.recipe = JSON.parse(JSON.stringify(this.response));
+      var response = data;
+     
+      this.recipe = JSON.parse(JSON.stringify(response));
+      console.log(this.recipe)
       },
     error => {
       console.log("DEF");
@@ -30,9 +31,33 @@ export class RecipeComponent implements OnInit {
     });
   }
 
+  getRecipeInstructions(recipeId: string) {
+    console.log("in")
+    this.searchService.getRecipeInstructions(recipeId).subscribe((data: string ) => {
+      console.log("above")
+      var response = data;
+    
+      console.log("abc453")
+      this.instructions = JSON.parse(JSON.stringify(response))[0];
+
+      console.log(this.instructions);
+      },
+    error => {
+      console.log("DEF");
+
+    });
+  }
+
+  convertToFraction(decimal: number): number {
+    var result = fracty(decimal);
+    console.log("i got after fracty");
+    return result;
+  }
+
   ngOnInit(): void {
     this.recipeId = this.route.snapshot.paramMap.get("recipeId");
     this.getRecipe(this.recipeId);
+    this.getRecipeInstructions(this.recipeId);
   }
 
 }

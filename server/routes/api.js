@@ -27,11 +27,27 @@ router.get('/search', (req, res) => {
   router.get('/recipe',  (req, res) => {
     var api = "https://api.spoonacular.com/recipes/" + req.query.recipeId + "/information?";
 
-    axios.get(`${api}apiKey=68e80673452e49f4b1420a61f1590887`)
+    axios.get(`${api}apiKey=`)
       .then(data => {
         console.log("GOOD");
     
-        console.log(data)
+        //console.log(data)
+          res.status(200).json(data.data);
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).send("Broken.");
+      });
+  })
+
+  router.get('/recipeInstructions',  (req, res) => {
+    var api = "https://api.spoonacular.com/recipes/" + req.query.recipeId + "/analyzedInstructions?";
+
+    axios.get(`${api}apiKey=`)
+      .then(data => {
+        console.log("GOOD");
+    
+       // console.log(data)
           res.status(200).json(data.data);
       })
       .catch(error => {
@@ -87,7 +103,7 @@ router.get('/search', (req, res) => {
       .then(data => {
         console.log("GOOD");
     
-        console.log(data)
+        //console.log(data)
           res.status(200).json(data.data);
       })
       .catch(error => {
