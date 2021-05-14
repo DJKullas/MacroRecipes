@@ -8,11 +8,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "preinstall": "npm install -g angular-cli"
+    "preinstall": "npm install -g @angular/cli"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.4",
+    "@angular/cli": "~10.0.3",
     "@angular/common": "~10.0.4",
     "@angular/compiler": "~10.0.4",
     "@angular/core": "~10.0.4",
