@@ -4,6 +4,7 @@ const router = express.Router();
 // declare axios for making http requests
 const axios = require('axios');
 const API = `https://api.spoonacular.com/recipes/findByIngredients`;
+const apiKey = process.env.RECIPE_KEY;
 
 
 
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/search', (req, res) => {
-    axios.get(`${API}?ingredients=${req.query.query}&apiKey=`)
+    axios.get(`${API}?ingredients=${req.query.query}&apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {
         console.log("GOOD");
           res.status(200).json(data.data);
@@ -27,7 +28,7 @@ router.get('/search', (req, res) => {
   router.get('/recipe',  (req, res) => {
     var api = "https://api.spoonacular.com/recipes/" + req.query.recipeId + "/information?";
 
-    axios.get(`${api}apiKey=`)
+    axios.get(`${api}apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {
         console.log("GOOD");
     
@@ -43,7 +44,7 @@ router.get('/search', (req, res) => {
   router.get('/recipeInstructions',  (req, res) => {
     var api = "https://api.spoonacular.com/recipes/" + req.query.recipeId + "/analyzedInstructions?";
 
-    axios.get(`${api}apiKey=`)
+    axios.get(`${api}apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {
         console.log("GOOD");
     
@@ -60,9 +61,6 @@ router.get('/search', (req, res) => {
 
     var api = "https://api.spoonacular.com/recipes/findByNutrients?random=true&";
 
-    console.log(req);
-
-    console.log("minProtein: " + req.query.minProtein);
 
     if (!(req.query.minCarbs == "undefined")) {
       api += "minCarbs=" + req.query.minCarbs + "&"
@@ -97,9 +95,7 @@ router.get('/search', (req, res) => {
       api += "maxCalories=" + req.query.maxCalories + "&"
     }
 
-    console.log("call: " + api);
-
-    axios.get(`${api}apiKey=`)
+    axios.get(`${api}apiKey=${apiKey}`)
       .then(data => {
         console.log("GOOD");
     
@@ -107,7 +103,7 @@ router.get('/search', (req, res) => {
           res.status(200).json(data.data);
       })
       .catch(error => {
-        console.log(error);
+        console.log("error");
         res.status(500).send("Broken.");
       });
   });
