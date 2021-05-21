@@ -26,13 +26,13 @@ router.get('/search', (req, res) => {
   });
 
   router.get('/recipe',  (req, res) => {
-    var api = "https://api.spoonacular.com/recipes/" + req.query.recipeId + "/information?";
+    var api = "https://api.spoonacular.com/recipes/" + req.query.recipeId + "/information?includeNutrition=true&";
 
     axios.get(`${api}apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {
         console.log("GOOD");
     
-        //console.log(data)
+       // console.log(data)
           res.status(200).json(data.data);
       })
       .catch(error => {

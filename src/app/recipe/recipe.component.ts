@@ -57,7 +57,7 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {
     this.recipeId = this.route.snapshot.paramMap.get("recipeId");
     this.getRecipe(this.recipeId);
-    this.getRecipeInstructions(this.recipeId);
+    //this.getRecipeInstructions(this.recipeId);
   }
 
 }

@@ -6,30 +6,44 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                {{ recipe.title }}
+                <h1 class="header">{{ recipe.title }}</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col header-image">
                 <img src="{{ recipe.image }}">
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <ul>
-                    <li *ngFor="let ingredient of recipe.extendedIngredients">
-                        {{ convertToFraction(ingredient.amount) }} {{ ingredient.unit }} {{ ingredient.name }}
-                    </li>
-                </ul>
+                <h4 class="header">Ingredients</h4>
+              
+                    <ul>
+                        <li *ngFor="let ingredient of recipe.extendedIngredients">
+                            {{ convertToFraction(ingredient.amount) }} {{ ingredient.unit }} {{ ingredient.name }}
+                        </li>
+                    </ul>
+           
             </div>
-        </div>
-        <div class="row">
             <div class="col">
-                <ul>
-                    <li *ngFor="let step of instructions.steps">
-                        {{ step.number }}) {{step.step}}
-                    </li>
-                </ul>
+                <h4 class="header">Instructions</h4>
+              
+                    <ol>
+                        <li *ngFor="let step of recipe.analyzedInstructions[0].steps">
+                            {{step.step}}
+                        </li>
+                    </ol>
+                
+            </div>
+            <div class="col">
+                <h4 class="header">Nutrients</h4>
+               
+                    <ul>
+                        <li *ngFor="let nutrient of recipe.nutrition.nutrients">
+                            {{nutrient.name}}: {{nutrient.amount}}{{nutrient.unit}}
+                        </li>
+                    </ul>
+               
             </div>
         </div>
     </div>
