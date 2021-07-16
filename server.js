@@ -3,6 +3,26 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
+const { Client } = require('pg');
+
+console.log(process.env.DATABASE_URL);
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+client.connect();
+
+client.query(`INSERT INTO test VALUES (3, 'name is this')`, (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+});
 
 // Get our API routes
 const api = require('./server/routes/api');
