@@ -9,20 +9,27 @@ import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { SearchService } from './search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LandingComponent } from './landing/landing.component';
-import { RecipeComponent } from './recipe/recipe.component'
+import { RecipeComponent } from './recipe/recipe.component';
+import { LoginComponent } from './login/login.component'
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipesListComponent,
     LandingComponent,
-    RecipeComponent
+    RecipeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [SearchService],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute } from "@angular/router";
 import { SearchService } from '../search.service';
 declare var require: any
@@ -16,7 +17,8 @@ export class RecipeComponent implements OnInit {
   recipe: any;
   instructions: any;
 
-  constructor(private readonly route: ActivatedRoute, private readonly searchService: SearchService) { }
+  constructor(private readonly route: ActivatedRoute, private readonly searchService: SearchService,
+              public auth: AngularFireAuth) { }
 
   getRecipe(recipeId: string) {
     this.searchService.getRecipe(recipeId).subscribe((data: string ) => {

@@ -49,3 +49,14 @@
     </div>
 </ng-template>
 
+
+<div *ngIf="auth.user | async as user; else showLogin">
+    <h1>Save recipe</h1>
+    <button (click)="logout()">Logout</button>
+  </div>
+  <ng-template #showLogin>
+    <p>Please login to save a recipe.</p>
+    <button (click)="login()">Login with Google</button>
+  </ng-template>
+
+

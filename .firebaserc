@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "macrorecipes-9ac03": {
+      "hosting": {
+        "MacroRecipes": [
+          "macrorecipes-9ac03"
+        ]
+      }
+    }
+  }
+}
