@@ -13,6 +13,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { LoginComponent } from './login/login.component'
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 
@@ -31,7 +32,7 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [SearchService],
+  providers: [SearchService, AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from "@angular/router";
 import { SearchService } from '../search.service';
 declare var require: any
@@ -13,12 +14,31 @@ const fracty = require('fracty');
 export class RecipeComponent implements OnInit {
 
   recipeId: string;
-
+  userId: string;
   recipe: any;
   instructions: any;
 
   constructor(private readonly route: ActivatedRoute, private readonly searchService: SearchService,
-              public auth: AngularFireAuth) { }
+              public auth: AngularFireAuth, private readonly afs: AngularFirestore) {
+                
+               }
+
+  saveRecipe(): void {
+
+    this.auth.user.subscribe(res => {
+      this.userId = res.uid;
+      this.afs.collection(`user/${this.userId}/savedRecipes`).add({'recipeId': this.recipeId});
+      var doc = this.afs.doc(`user/${this.userId}`);
+      var savedRecipes = doc.collection('savedRecipes');
+      var test = savedRecipes.valueChanges().subscribe(res => {
+        res.forEach(x => {
+          console.log(x.recipeId);
+        })
+      })
+      console.log("Saved Recipes: " + savedRecipes);
+    });
+
+  }
 
   getRecipe(recipeId: string) {
     this.searchService.getRecipe(recipeId).subscribe((data: string ) => {
@@ -52,13 +72,13 @@ export class RecipeComponent implements OnInit {
 
   convertToFraction(decimal: number): number {
     var result = fracty(decimal);
-    console.log("i got after fracty");
     return result;
   }
 
   ngOnInit(): void {
     this.recipeId = this.route.snapshot.paramMap.get("recipeId");
     this.getRecipe(this.recipeId);
+    
     //this.getRecipeInstructions(this.recipeId);
   }
 

@@ -13,6 +13,10 @@ router.get('/', (req, res) => {
   res.send('api works');
 });
 
+router.get('/saveRecipe', (req, res) => {
+  
+});
+
 router.get('/search', (req, res) => {
     axios.get(`${API}?ingredients=${req.query.query}&apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {
