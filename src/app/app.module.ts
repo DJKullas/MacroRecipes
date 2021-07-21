@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component'
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -23,7 +24,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     RecipesListComponent,
     LandingComponent,
     RecipeComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
