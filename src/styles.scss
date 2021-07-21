@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.css";
-@import "~bootswatch/dist/darkly/bootstrap.css";
+//@import "~bootswatch/dist/darkly/bootstrap.css";
+
+body {
+    background-color: grey;
+}
+
+.container {
+    background-color: white;
+}

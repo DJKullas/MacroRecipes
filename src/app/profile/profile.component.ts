@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
       savedRecipes.valueChanges().subscribe(res => {
         this.addIdsToList(res);
       })
-      console.log("Saved Recipes: " + this.savedRecipeIds);
     });
   }
 
@@ -31,6 +30,7 @@ export class ProfileComponent implements OnInit {
     res.forEach(recipe => {
       this.savedRecipeIds.push(recipe.recipeId)
     });
+    console.log("Saved Recipes: " + this.savedRecipeIds);
   }
 
 

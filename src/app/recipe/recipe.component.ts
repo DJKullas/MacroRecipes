@@ -35,7 +35,8 @@ export class RecipeComponent implements OnInit {
           console.log(x.recipeId);
         })
       })
-      console.log("Saved Recipes: " + savedRecipes);
+      console.log("Saved Recipes: " + savedRecipes[0]);
+      console.log("test: " + test);
     });
 
   }
