@@ -46,7 +46,7 @@ router.get('/search', (req, res) => {
   })
 
   router.get('/savedRecipes',  (req, res) => {
-    var api = "https://api.spoonacular.com/recipes/" + req.query.recipeId + "/information?includeNutrition=true&";
+    var api = "https://api.spoonacular.com/recipes/informationBulk?ids=" + req.query.recipeIds +  "&includeNutrition=true&";
 
     axios.get(`${api}apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {

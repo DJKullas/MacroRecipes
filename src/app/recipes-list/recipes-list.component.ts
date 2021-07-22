@@ -46,6 +46,8 @@ export class RecipesListComponent implements OnInit {
       console.log(this.response);
 
       this.recipes = JSON.parse(JSON.stringify(this.response));
+      localStorage.removeItem('recipes');
+      localStorage.setItem('recipes', JSON.stringify(this.recipes));
       },
     error => {
       console.log("DEF");
@@ -57,8 +59,12 @@ export class RecipesListComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(url);
 }
 
+  loadListIfPresent(): void {
+    this.recipes = JSON.parse(localStorage.getItem('recipes'));
+  }
+
   ngOnInit(): void {
- 
+    this.loadListIfPresent();
   }
 
 }

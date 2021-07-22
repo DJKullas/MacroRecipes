@@ -4,12 +4,28 @@
 
 <ng-template #elseBlock>
     <div class="container">
-        <div class="row">
+        <div class="row top-row">
             <div class="col">
-                <h1 class="header">{{ recipe.title }}</h1>
+                <a href="http://localhost:5000/recipes" class="results-button btn btn-secondary btn-sm">Back to Results</a>
+            </div>
+            <div class="col">
+                <div *ngIf="auth.user | async as user; else showLogin">
+                    <button class="save-recipe-button btn btn-sm btn-success" (click)="saveRecipe()">Save Recipe</button>
+                </div>
+                  <ng-template #showLogin>
+                    <button (click)="login()">Login with Google</button>
+                  </ng-template>
             </div>
         </div>
         <div class="row">
+            
+            <div class="col">
+                <h1 class="header">{{ recipe.title }}</h1>
+            
+            </div>
+        
+        </div>
+        <div class="row image-row">
             <div class="col header-image">
                 <img class="img-fluid" src="{{ recipe.image }}">
             </div>
@@ -50,13 +66,6 @@
 </ng-template>
 
 
-<div *ngIf="auth.user | async as user; else showLogin">
-    <h1>Save recipe</h1>
-    <button (click)="saveRecipe()">Save</button>
-  </div>
-  <ng-template #showLogin>
-    <p>Please login to save a recipe.</p>
-    <button (click)="login()">Login with Google</button>
-  </ng-template>
+
 
 

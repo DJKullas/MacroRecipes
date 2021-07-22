@@ -27,6 +27,10 @@ export class SearchService {
     return this.http.get('/api/recipe', {params: {recipeId: recipeId}});
   }
 
+  getSavedRecipes(recipeIds: string) {
+    return this.http.get('/api/savedRecipes', {params: {recipeIds: recipeIds}});
+  }
+
   getRecipeInstructions(recipeId: string) {
     return this.http.get('/api/recipeInstructions', {params: {recipeId: recipeId}});
   }
