@@ -1,1 +1,60 @@
-<p>profile works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Profile</h1>
+        </div>
+    </div>
+    <div class="row" class="recipe-list-item" *ngFor="let recipe of savedRecipes">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h3 class="recipe-title"><a href="http://localhost:5000/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="center col-md">
+                    <img class="center recipe-image" src="{{ recipe.image }}">
+                </div>
+                <div class="col-md">
+                    <div class="row">
+                        <div class="col-6">
+                            <ul>
+                                <li>Calories: {{ recipe.calories }}</li>
+                                <li>Carbs: {{ recipe.carbs }}</li>
+                                <li>Fat: {{ recipe.fat }}</li>
+                                <li>Protein: {{ recipe.protein }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul>
+                                <li>Calories: {{ recipe.calories }}</li>
+                                <li>Carbs: {{ recipe.carbs }}</li>
+                                <li>Fat: {{ recipe.fat }}</li>
+                                <li>Protein: {{ recipe.protein }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <ul>
+                                <li>Calories: {{ recipe.calories }}</li>
+                                <li>Carbs: {{ recipe.carbs }}</li>
+                                <li>Fat: {{ recipe.fat }}</li>
+                                <li>Protein: {{ recipe.protein }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul>
+                                <li>Calories: {{ recipe.calories }}</li>
+                                <li>Carbs: {{ recipe.carbs }}</li>
+                                <li>Fat: {{ recipe.fat }}</li>
+                                <li>Protein: {{ recipe.protein }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</div>
