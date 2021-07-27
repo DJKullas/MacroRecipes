@@ -15,6 +15,9 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ProfileComponent } from './profile/profile.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ContactComponent } from './contact/contact.component';
+import { RecaptchaModule } from "ng-recaptcha";
 
 
 
@@ -25,7 +28,8 @@ import { ProfileComponent } from './profile/profile.component';
     LandingComponent,
     RecipeComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,8 @@ import { ProfileComponent } from './profile/profile.component';
     HttpClientModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    FontAwesomeModule,
+    RecaptchaModule
   ],
   providers: [SearchService, AngularFirestore],
   bootstrap: [AppComponent]

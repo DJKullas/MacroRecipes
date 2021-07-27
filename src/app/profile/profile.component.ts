@@ -57,12 +57,33 @@ export class ProfileComponent implements OnInit {
     // return test;
   }
 
+  getNutrientFromRecipe(nutrient: string, recipe: any): string {
+    var nutrientResult;
+    var resultString: string;
+
+    nutrientResult = recipe.nutrition.nutrients.filter(n => { return n.name ===  nutrient });
+    resultString = nutrientResult[0].amount.toString().concat(nutrientResult[0].unit.toString());
+
+    return resultString;
+  }
+
+  addNutrientsToRecipe(): void {
+    this.savedRecipes.forEach(recipe => {
+      recipe.calories = this.getNutrientFromRecipe("Calories", recipe);
+      recipe.carbs = this.getNutrientFromRecipe("Carbohydrates", recipe);
+      recipe.protein = this.getNutrientFromRecipe("Protein", recipe);
+      recipe.fat = this.getNutrientFromRecipe("Fat", recipe);
+    });
+    console.log(this.savedRecipes);
+  }
+
   getRecipes(): void {
     this.searchService.getSavedRecipes(this.recipeIdsSetToString()).subscribe((data: string ) => {
       var response = data;
      
       this.savedRecipes = JSON.parse(JSON.stringify(response));
-      console.log(this.savedRecipes)
+      console.log(this.savedRecipes);
+      this.addNutrientsToRecipe();
       },
     error => {
       console.log("DEF");

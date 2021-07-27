@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from "@angular/router";
 import { SearchService } from '../search.service';
+import { faHeart, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 declare var require: any
 const fracty = require('fracty');
 
@@ -17,6 +18,8 @@ export class RecipeComponent implements OnInit {
   userId: string;
   recipe: any;
   instructions: any;
+  faHeart = faHeart;
+  faChevronLeft = faChevronLeft;
 
   constructor(private readonly route: ActivatedRoute, private readonly searchService: SearchService,
               public auth: AngularFireAuth, private readonly afs: AngularFirestore) {
