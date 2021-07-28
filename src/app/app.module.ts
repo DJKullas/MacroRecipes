@@ -17,7 +17,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ProfileComponent } from './profile/profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ContactComponent } from './contact/contact.component';
-import { RecaptchaModule } from "ng-recaptcha";
+import { RecaptchaModule, RecaptchaFormsModule } from "ng-recaptcha";
 import { SafeHtmlPipe } from './pipes/sanitizer.pipe';
 
 
@@ -39,7 +39,8 @@ import { SafeHtmlPipe } from './pipes/sanitizer.pipe';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     FontAwesomeModule,
-    RecaptchaModule
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   exports: [
     SafeHtmlPipe
