@@ -33,6 +33,14 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md">
+                <div [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
+            </div>
+            <div class="col-md">
+                <div [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
+            </div>
+         </div>
+        <div class="row">
             <div class="col-md border-right">
                 <h4 class="header">Ingredients</h4>
               
@@ -65,9 +73,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-           <div [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
-        </div>
+        
     </div>
 </ng-template>
 
