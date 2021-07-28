@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from "@angular/router";
 import { SearchService } from '../search.service';
 import { faHeart, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+
 declare var require: any
 const fracty = require('fracty');
 
@@ -20,6 +21,7 @@ export class RecipeComponent implements OnInit {
   instructions: any;
   faHeart = faHeart;
   faChevronLeft = faChevronLeft;
+  nutritionWidgetHtml: string;
 
   constructor(private readonly route: ActivatedRoute, private readonly searchService: SearchService,
               public auth: AngularFireAuth, private readonly afs: AngularFirestore) {
@@ -49,7 +51,8 @@ export class RecipeComponent implements OnInit {
       var response = data;
      
       this.recipe = JSON.parse(JSON.stringify(response));
-      console.log(this.recipe)
+      console.log(this.recipe);
+      this.getRecipeNutritionWidget();
       },
     error => {
       console.log("DEF");
@@ -72,6 +75,25 @@ export class RecipeComponent implements OnInit {
       console.log("DEF");
 
     });
+  }
+
+  getRecipeNutritionWidget(): void {
+
+    this.searchService.getRecipeNutritionWidget(this.recipeId).subscribe((data: string ) => {
+      var response = data;
+    
+      this.nutritionWidgetHtml = JSON.parse(JSON.stringify(response));
+
+      console.log(this.nutritionWidgetHtml);
+      },
+    error => {
+      console.log("DEF");
+
+    });
+
+
+
+    
   }
 
   convertToFraction(decimal: number): number {

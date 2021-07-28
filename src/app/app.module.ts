@@ -18,7 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ContactComponent } from './contact/contact.component';
 import { RecaptchaModule } from "ng-recaptcha";
-
+import { SafeHtmlPipe } from './pipes/sanitizer.pipe';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { RecaptchaModule } from "ng-recaptcha";
     RecipeComponent,
     LoginComponent,
     ProfileComponent,
-    ContactComponent
+    ContactComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -39,6 +40,9 @@ import { RecaptchaModule } from "ng-recaptcha";
     AngularFireModule.initializeApp(environment.firebase),
     FontAwesomeModule,
     RecaptchaModule
+  ],
+  exports: [
+    SafeHtmlPipe
   ],
   providers: [SearchService, AngularFirestore],
   bootstrap: [AppComponent]

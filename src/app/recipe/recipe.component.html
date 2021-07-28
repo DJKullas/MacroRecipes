@@ -56,13 +56,17 @@
             <div class="col-md">
                 <h4 class="header">Nutrients</h4>
                
+                <div>
                     <ul>
                         <li *ngFor="let nutrient of recipe.nutrition.nutrients">
                             {{nutrient.name}}: {{nutrient.amount}}{{nutrient.unit}}
                         </li>
                     </ul>
-               
+                </div>
             </div>
+        </div>
+        <div class="row">
+           <div [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
         </div>
     </div>
 </ng-template>
