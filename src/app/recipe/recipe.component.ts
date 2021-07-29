@@ -22,6 +22,7 @@ export class RecipeComponent implements OnInit {
   faHeart = faHeart;
   faChevronLeft = faChevronLeft;
   nutritionWidgetHtml: string;
+  priceWidgetHtml: string;
 
   constructor(private readonly route: ActivatedRoute, private readonly searchService: SearchService,
               public auth: AngularFireAuth, private readonly afs: AngularFirestore) {
@@ -53,6 +54,7 @@ export class RecipeComponent implements OnInit {
       this.recipe = JSON.parse(JSON.stringify(response));
       console.log(this.recipe);
       this.getRecipeNutritionWidget();
+      this.getRecipePriceWidget();
       },
     error => {
       console.log("DEF");
@@ -90,10 +92,21 @@ export class RecipeComponent implements OnInit {
       console.log("DEF");
 
     });
+  }
 
+  getRecipePriceWidget(): void {
 
-
+    this.searchService.getRecipePriceWidget(this.recipeId).subscribe((data: string ) => {
+      var response = data;
     
+      this.priceWidgetHtml = JSON.parse(JSON.stringify(response));
+
+      console.log(this.priceWidgetHtml);
+      },
+    error => {
+      console.log("DEF");
+
+    });
   }
 
   convertToFraction(decimal: number): number {

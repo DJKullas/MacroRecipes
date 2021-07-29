@@ -1,83 +1,84 @@
-<div *ngIf="recipe == null || recipe == undefined; else elseBlock">
-    Loading
-</div>
-
-<ng-template #elseBlock>
-    <div class="container">
-        <div class="row top-row">
-            <div class="col">
-                <a href="http://localhost:5000/recipes" class="results-button btn btn-secondary btn-sm"><fa-icon [icon]="faChevronLeft"></fa-icon> Back to Results 
-                </a>
+<div class="container">
+    <div *ngIf="recipe == null || recipe == undefined; else elseBlock">
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
             </div>
-            <div class="col">
-                <div *ngIf="auth.user | async as user; else showLogin">
-                    <button class="save-recipe-button btn btn-sm btn-success" (click)="saveRecipe()">Save Recipe <fa-icon [icon]="faHeart"></fa-icon>
-                    </button>
-                </div>
-                  <ng-template #showLogin>
-                    <button (click)="login()">Login with Google</button>
-                  </ng-template>
-            </div>
-        </div>
-        <div class="row">
-            
-            <div class="col">
-                <h1 class="header">{{ recipe.title }}</h1>
-            
-            </div>
-        
-        </div>
-        <div class="row image-row">
-            <div class="col header-image">
-                <img class="img-fluid" src="{{ recipe.image }}">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md">
-                <div [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
-            </div>
-            <div class="col-md">
-                <div [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
-            </div>
-         </div>
-        <div class="row">
-            <div class="col-md border-right">
-                <h4 class="header">Ingredients</h4>
-              
-                    <ul>
-                        <li *ngFor="let ingredient of recipe.extendedIngredients">
-                            {{ convertToFraction(ingredient.amount) }} {{ ingredient.unit }} {{ ingredient.name }}
-                        </li>
-                    </ul>
-           
-            </div>
-            <div class="col-md border-right">
-                <h4 class="header">Instructions</h4>
-              
-                    <ol>
-                        <li *ngFor="let step of recipe.analyzedInstructions[0].steps">
-                            {{step.step}}
-                        </li>
-                    </ol>
-                
-            </div>
-            <div class="col-md">
-                <h4 class="header">Nutrients</h4>
-               
-                <div>
-                    <ul>
-                        <li *ngFor="let nutrient of recipe.nutrition.nutrients">
-                            {{nutrient.name}}: {{nutrient.amount}}{{nutrient.unit}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
+          </div>
     </div>
+
+    
+<ng-template #elseBlock>
+    <div class="row top-row">
+        <div class="col">
+            <a href="http://localhost:5000/recipes" class="results-button btn btn-secondary btn-sm"><fa-icon [icon]="faChevronLeft"></fa-icon> Back to Results 
+            </a>
+        </div>
+        <div class="col">
+            <div *ngIf="auth.user | async as user; else showLogin">
+                <button class="save-recipe-button btn btn-sm btn-success" (click)="saveRecipe()">Save Recipe <fa-icon [icon]="faHeart"></fa-icon>
+                </button>
+            </div>
+              <ng-template #showLogin>
+                <button (click)="login()">Login with Google</button>
+              </ng-template>
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="col">
+            <h1 class="header">{{ recipe.title }}</h1>
+        
+        </div>
+    
+    </div>
+    <div class="row image-row">
+        <div class="col header-image">
+            <img class="img-fluid" src="{{ recipe.image }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <div [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
+        </div>
+        <div class="col-md">
+            <div [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
+        </div>
+     </div>
+    <div class="row">
+        <div class="col-md border-right">
+            <h4 class="header">Ingredients</h4>
+          
+                <ul>
+                    <li *ngFor="let ingredient of recipe.extendedIngredients">
+                        {{ convertToFraction(ingredient.amount) }} {{ ingredient.unit }} {{ ingredient.name }}
+                    </li>
+                </ul>
+       
+        </div>
+        <div class="col-md border-right">
+            <h4 class="header">Instructions</h4>
+          
+                <ol>
+                    <li *ngFor="let step of recipe.analyzedInstructions[0].steps">
+                        {{step.step}}
+                    </li>
+                </ol>
+            
+        </div>
+        <div class="col-md">
+            <h4 class="header">Nutrients</h4>
+           
+            <div>
+                <ul>
+                    <li *ngFor="let nutrient of recipe.nutrition.nutrients">
+                        {{nutrient.name}}: {{nutrient.amount}}{{nutrient.unit}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
 </ng-template>
-
-
-
-
 

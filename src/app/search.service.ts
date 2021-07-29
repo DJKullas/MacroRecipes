@@ -31,12 +31,21 @@ export class SearchService {
     return this.http.get('/api/nutritionWidget', {params: {recipeId: recipeId}});
   }
 
+  getRecipePriceWidget(recipeId: string) {
+    return this.http.get('/api/priceWidget', {params: {recipeId: recipeId}});
+  }
+
   getSavedRecipes(recipeIds: string) {
     return this.http.get('/api/savedRecipes', {params: {recipeIds: recipeIds}});
   }
 
   getRecipeInstructions(recipeId: string) {
     return this.http.get('/api/recipeInstructions', {params: {recipeId: recipeId}});
+  }
+
+  sendEmail(name: string, email: string, message:string) {
+    console.log("SENDING EMAIL")
+    return this.http.get('/api/contact', {params: {name: name, email: email, message: message}});
   }
 
 }

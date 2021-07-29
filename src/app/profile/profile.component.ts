@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(public auth: AngularFireAuth, private readonly afs: AngularFirestore, private readonly searchService: SearchService) { }
 
-  savedRecipes: any[] = [];
+  savedRecipes: any[];
   savedRecipeIds: string[] = [];
   userId: string;
 
@@ -21,8 +21,8 @@ export class ProfileComponent implements OnInit {
     this.auth.user.subscribe(res => {
       this.userId = res.uid;
       var doc = this.afs.doc(`user/${this.userId}`);
-      var savedRecipes = doc.collection('savedRecipes');
-      savedRecipes.valueChanges().subscribe(res => {
+      var savedRecipeCollection = doc.collection('savedRecipes');
+      savedRecipeCollection.valueChanges().subscribe(res => {
         this.addIdsToList(res);
       })
     });

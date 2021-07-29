@@ -6,7 +6,10 @@ const axios = require('axios');
 const API = `https://api.spoonacular.com/recipes/findByIngredients`;
 const apiKey = process.env.RECIPE_KEY;
 
-
+const nodemailer = require('nodemailer');
+const GMAIL_USER = process.env.GMAIL_USER;
+const GMAIL_PASS = process.env.GMAIL_PASS;
+const BUSINESS_EMAIL = process.env.BUSINESS_EMAIL;
 
 /* GET api listing. */
 router.get('/', (req, res) => {
@@ -73,6 +76,22 @@ router.get('/search', (req, res) => {
       });
   })
 
+  router.get('/priceWidget',  (req, res) => {
+    var api = "https://api.spoonacular.com/recipes/" + req.query.recipeId + "/priceBreakdownWidget?defaultCss=true&";
+
+    axios.get(`${api}apiKey=${process.env.RECIPE_KEY}`)
+      .then(data => {
+        console.log("GOOD");
+    
+       // console.log(data)
+          res.status(200).json(data.data);
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).send("Broken.");
+      });
+  })
+
   router.get('/recipeInstructions',  (req, res) => {
     var api = "https://api.spoonacular.com/recipes/" + req.query.recipeId + "/analyzedInstructions?";
 
@@ -88,6 +107,45 @@ router.get('/search', (req, res) => {
         res.status(500).send("Broken.");
       });
   })
+
+
+  // POST route from contact form
+router.get('/contact', (req, res) => {
+
+  console.log(req);
+
+  // Instantiate the SMTP server
+  const smtpTrans = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: GMAIL_USER,
+      pass: GMAIL_PASS
+    }
+  });
+
+  // Specify what the email will look like
+  const mailOpts = {
+    from: 'Your sender info here', // This is ignored by Gmail
+    to: BUSINESS_EMAIL,
+    subject: 'Macro Recipes Contact Form',
+    text: `${req.query.name} (${req.query.email}) says: ${req.query.message}`
+  }
+
+  // Attempt to send the email
+  smtpTrans.sendMail(mailOpts, (error, response) => {
+    if (error) {
+        console.log("ERROR: " + error);
+        res.status(500).send("Broken.");
+    }
+    else {
+        console.log(response);
+        res.status(200).json(response);
+    }
+  })
+});
+
 
   router.get('/searchByMacros', (req, res) => {
 

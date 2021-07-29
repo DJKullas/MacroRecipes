@@ -25,6 +25,7 @@ export class RecipesListComponent implements OnInit {
   constructor(private readonly searchService: SearchService, private readonly sanitizer: DomSanitizer) { }
 
   search() {
+    this.response = "";
     this.searchService.search(this.query).subscribe((data: string ) => {
       this.response = data;
       console.log("response")
@@ -37,6 +38,7 @@ export class RecipesListComponent implements OnInit {
   }
 
   searchByMacros() {
+    this.recipes = null;
     this.searchService.searchByMacros(this.minCarbs?.toString(), this.maxCarbs?.toString(), 
                                       this.minFat?.toString(), this.maxFat?.toString(),
                                       this.minProtein?.toString(), this.maxProtein?.toString(),
