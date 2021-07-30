@@ -18,6 +18,9 @@ export class ProfileComponent implements OnInit {
   userId: string;
 
   populateSavedRecipeIds(): void {
+    this.savedRecipes = null;
+    this.savedRecipeIds = [];
+
     this.auth.user.subscribe(res => {
       this.userId = res.uid;
       var doc = this.afs.doc(`user/${this.userId}`);
@@ -28,33 +31,22 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  deleteRecipe(recipeId: string): void {
+    this.auth.user.subscribe(res => {
+      this.userId = res.uid;
+
+      this.afs.doc(`user/${this.userId}/savedRecipes/${recipeId}`).delete().then(res => {
+        this.savedRecipes = this.savedRecipes.filter(x => { x.recipeId != recipeId });
+      });
+    });
+  }
+
   addIdsToList(res: any) {
     res.forEach(recipe => {
       this.savedRecipeIds.push(recipe.recipeId); 
     });
 
     this.getRecipes();
-  }
-
-  recipeIdsSetToString(): string {
-
-    var uniqueIds = [...new Set(this.savedRecipeIds)];
-
-    console.log("idsarray: " + uniqueIds.toString())
-
-    return uniqueIds.toString();
-
-    // var recipeIdsString: string = "";
-
-    // this.savedRecipeIds.forEach(id => {
-    //   console.log("In foreach: " + id)
-    //   recipeIdsString.concat(id + ",");
-    // });
-
-    // console.log("before substr" + recipeIdsString);
-    // var test = recipeIdsString.substring(0, recipeIdsString.length - 1);
-    // console.log("Ids list: " + test);
-    // return test;
   }
 
   getNutrientFromRecipe(nutrient: string, recipe: any): string {
@@ -78,7 +70,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getRecipes(): void {
-    this.searchService.getSavedRecipes(this.recipeIdsSetToString()).subscribe((data: string ) => {
+    this.searchService.getSavedRecipes(this.savedRecipeIds.toString()).subscribe((data: string ) => {
       var response = data;
      
       this.savedRecipes = JSON.parse(JSON.stringify(response));

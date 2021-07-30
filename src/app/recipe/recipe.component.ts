@@ -33,7 +33,7 @@ export class RecipeComponent implements OnInit {
 
     this.auth.user.subscribe(res => {
       this.userId = res.uid;
-      this.afs.collection(`user/${this.userId}/savedRecipes`).add({'recipeId': this.recipeId});
+      this.afs.collection(`user/${this.userId}/savedRecipes`).doc(this.recipeId).set({'recipeId': this.recipeId});
       var doc = this.afs.doc(`user/${this.userId}`);
       var savedRecipes = doc.collection('savedRecipes');
       var test = savedRecipes.valueChanges().subscribe(res => {

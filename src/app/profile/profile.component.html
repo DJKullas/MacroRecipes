@@ -20,7 +20,7 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h3 class="recipe-title"><a href="http://localhost:5000/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3>
+                        <h3 class="recipe-title"><a href="http://localhost:5000/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3> <button (click)="deleteRecipe(recipe.id)" class="btn btn-danger">Delete Recipe</button>
                     </div>
                 </div>
                 <div class="row">
