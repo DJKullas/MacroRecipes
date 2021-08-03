@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../search.service'
 import { DomSanitizer } from '@angular/platform-browser';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-recipes-list',
@@ -19,10 +21,12 @@ export class RecipesListComponent implements OnInit {
   maxProtein: number;
   minCalories: number;
   maxCalories: number;
+  userId: string;
 
   recipes: Object[];
 
-  constructor(private readonly searchService: SearchService, private readonly sanitizer: DomSanitizer) { }
+  constructor(private readonly searchService: SearchService, private readonly sanitizer: DomSanitizer,
+              public auth: AngularFireAuth, private readonly afs: AngularFirestore) { }
 
   search() {
     this.response = "";
@@ -57,12 +61,27 @@ export class RecipesListComponent implements OnInit {
     });
   }
 
+  deleteRecipe(recipeId: string): void {
+    this.auth.user.subscribe(res => {
+      this.userId = res.uid;
+
+      this.afs.doc(`user/${this.userId}/savedRecipes/${recipeId}`).delete().then(res => {
+        
+      });
+    });
+  }
+
   sanitize(url: string){
     return this.sanitizer.bypassSecurityTrustUrl(url);
 }
 
   loadListIfPresent(): void {
-    this.recipes = JSON.parse(localStorage.getItem('recipes'));
+    this.recipes = JSON.parse(sessionStorage.getItem('recipes'));
+
+    if (this.recipes == null || this.recipes == undefined) {
+      this.recipes = [];
+    }
+
   }
 
   ngOnInit(): void {
