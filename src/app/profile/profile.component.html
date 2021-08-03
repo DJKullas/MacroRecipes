@@ -16,11 +16,11 @@
     <ng-template #elseBlock>
     
         
-        <div class="row" class="recipe-list-item" *ngFor="let recipe of savedRecipes">
+        <div class="row border-bottom" class="recipe-list-item" *ngFor="let recipe of savedRecipes">
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h3 class="recipe-title"><a href="http://localhost:5000/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3> <button (click)="deleteRecipe(recipe.id)" class="btn btn-danger">Delete Recipe</button>
+                        <h3 class="recipe-title"><a href="http://localhost:5000/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3> 
                     </div>
                 </div>
                 <div class="row">
@@ -62,6 +62,11 @@
                                     <li>Fat: {{ recipe.fat }}</li>
                                     <li>Protein: {{ recipe.protein }}</li>
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button (click)="deleteRecipe(recipe.id)" class="btn btn-danger btn-sm delete-button">Delete Recipe</button>
                             </div>
                         </div>
                     </div>

@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
       this.userId = res.uid;
       var doc = this.afs.doc(`user/${this.userId}`);
       var savedRecipeCollection = doc.collection('savedRecipes');
+      this.savedRecipeIds = [];
       savedRecipeCollection.valueChanges().subscribe(res => {
         this.addIdsToList(res);
       })
@@ -36,7 +37,7 @@ export class ProfileComponent implements OnInit {
       this.userId = res.uid;
 
       this.afs.doc(`user/${this.userId}/savedRecipes/${recipeId}`).delete().then(res => {
-        this.savedRecipes = this.savedRecipes.filter(x => { x.recipeId != recipeId });
+        console.log(this.savedRecipes);
       });
     });
   }
@@ -74,6 +75,7 @@ export class ProfileComponent implements OnInit {
       var response = data;
      
       this.savedRecipes = JSON.parse(JSON.stringify(response));
+
       console.log(this.savedRecipes);
       this.addNutrientsToRecipe();
       },

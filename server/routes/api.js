@@ -50,8 +50,9 @@ router.get('/search', (req, res) => {
     axios.get(`${api}apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {
         console.log("GOOD");
-    
-       // console.log(data)
+        
+        
+
           res.status(200).json(data.data);
       })
       .catch(error => {
