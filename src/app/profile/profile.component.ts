@@ -2,6 +2,7 @@ import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { SearchService } from '../search.service';
 
 @Component({
@@ -11,7 +12,8 @@ import { SearchService } from '../search.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(public auth: AngularFireAuth, private readonly afs: AngularFirestore, private readonly searchService: SearchService) { }
+  constructor(public auth: AngularFireAuth, private readonly afs: AngularFirestore, private readonly searchService: SearchService,
+              private router: Router) { }
 
   savedRecipes: any[];
   savedRecipeIds: string[] = [];
@@ -22,6 +24,11 @@ export class ProfileComponent implements OnInit {
     this.savedRecipeIds = [];
 
     this.auth.user.subscribe(res => {
+
+      if (res == null || res == undefined) {
+        this.router.navigate(['/login']);
+      }
+
       this.userId = res.uid;
       var doc = this.afs.doc(`user/${this.userId}`);
       var savedRecipeCollection = doc.collection('savedRecipes');
@@ -29,6 +36,8 @@ export class ProfileComponent implements OnInit {
       savedRecipeCollection.valueChanges().subscribe(res => {
         this.addIdsToList(res);
       })
+    }, err => {
+      this.router.navigate['/login'];
     });
   }
 

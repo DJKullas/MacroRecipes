@@ -13,9 +13,34 @@ export class LoginComponent implements OnInit {
 
   constructor(public auth: AngularFireAuth) { }
 
-  login() {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  email: string;
+  password: string;
+  phoneNumber: string;
+
+  signUpEmail() {
+    this.auth.createUserWithEmailAndPassword(this.email, this.password);
   }
+
+  loginEmail() {
+    this.auth.signInWithEmailAndPassword(this.email, this.password);
+  }
+
+  loginFacebook() {
+    this.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider());
+  }
+
+  loginGithub() {
+    this.auth.signInWithRedirect(new firebase.auth.GithubAuthProvider());
+  }
+
+  loginTwitter() {
+    this.auth.signInWithRedirect(new firebase.auth.TwitterAuthProvider());
+  }
+
+  loginGoogle() {
+    this.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+  }
+
   logout() {
     this.auth.signOut();
   }

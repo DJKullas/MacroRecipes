@@ -4,7 +4,14 @@
   </div>
   <ng-template #showLogin>
     <p>Please login.</p>
-    <button (click)="login()">Login with Google</button>
+    <button (click)="loginGoogle()">Login with Google</button>
+    <button (click)="loginEmail()">Login with Email</button>
+    <button (click)="signUpEmail()">Sign Up with Email</button>
+    <button (click)="loginFacebook()">Login with Facebook</button>
+    <button (click)="loginGithub()">Login with Github</button>
+    <button (click)="loginTwitter()">Login with Twitter</button>
+    <input placeholder="email" [(ngModel)]="email" type="text">
+    <input placeholder="password" [(ngModel)]="password" type="text">
   </ng-template>
 
 
