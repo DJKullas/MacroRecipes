@@ -3,6 +3,8 @@ import { SearchService } from '../search.service'
 import { DomSanitizer } from '@angular/platform-browser';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipes-list',
@@ -22,11 +24,28 @@ export class RecipesListComponent implements OnInit {
   minCalories: number;
   maxCalories: number;
   userId: string;
+  faHeart = faHeart;
 
   recipes: Object[];
 
   constructor(private readonly searchService: SearchService, private readonly sanitizer: DomSanitizer,
-              public auth: AngularFireAuth, private readonly afs: AngularFirestore) { }
+              public auth: AngularFireAuth, private readonly afs: AngularFirestore, private router: Router) { }
+
+
+  saveRecipe(recipeId: string): void {
+
+    if (this.auth.user != null) {
+      this.auth.user.subscribe(res => {
+        this.userId = res.uid;
+        this.afs.collection(`user/${this.userId}/savedRecipes`).doc(recipeId.toString()).set({'recipeId': recipeId});
+      });
+  
+    } else {
+      this.router.navigate(['/login']);
+    }
+
+    
+  }
 
   search() {
     this.response = "";
@@ -76,7 +95,7 @@ export class RecipesListComponent implements OnInit {
 }
 
   loadListIfPresent(): void {
-    this.recipes = JSON.parse(sessionStorage.getItem('recipes'));
+    this.recipes = JSON.parse(localStorage.getItem('recipes'));
 
     if (this.recipes == null || this.recipes == undefined) {
       this.recipes = [];

@@ -1,18 +1,26 @@
-<div *ngIf="auth.user | async as user; else showLogin">
-    <h1>Hello {{ user.displayName }}!</h1>
-    <button (click)="logout()">Logout</button>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="text-center">Please Login</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+      
+           <!-- The surrounding HTML is left untouched by FirebaseUI.
+           Your app may use that space for branding, controls and other customizations.-->
+           <div class="auth-container">
+            <div class="auth-container" id="firebaseui-auth-container"></div>
+           </div>
+      
+     
+    
+      </div>
+    </div>
   </div>
-  <ng-template #showLogin>
-    <p>Please login.</p>
-    <button (click)="loginGoogle()">Login with Google</button>
-    <button (click)="loginEmail()">Login with Email</button>
-    <button (click)="signUpEmail()">Sign Up with Email</button>
-    <button (click)="loginFacebook()">Login with Facebook</button>
-    <button (click)="loginGithub()">Login with Github</button>
-    <button (click)="loginTwitter()">Login with Twitter</button>
-    <input placeholder="email" [(ngModel)]="email" type="text">
-    <input placeholder="password" [(ngModel)]="password" type="text">
-  </ng-template>
 
 
-  
+
+
+

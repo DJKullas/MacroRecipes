@@ -54,7 +54,7 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <h3 class="recipe-title"><a href="http://localhost:5000/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3>
+                    <h3 class="recipe-title"><a class="text-center" href="http://localhost:5000/recipe/{{ recipe.id }}">{{ recipe.title }}</a><button class="save-recipe-button btn btn-sm btn-success" (click)="saveRecipe(recipe.id)"><fa-icon [icon]="faHeart"></fa-icon></button></h3>
                 </div>
             </div>
             <div class="row">
@@ -98,13 +98,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <button (click)="deleteRecipe(recipe.id)" class="btn btn-danger btn-sm delete-button">Delete Recipe</button>
-                        </div>
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>

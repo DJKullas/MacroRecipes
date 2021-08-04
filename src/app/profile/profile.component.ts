@@ -32,8 +32,8 @@ export class ProfileComponent implements OnInit {
       this.userId = res.uid;
       var doc = this.afs.doc(`user/${this.userId}`);
       var savedRecipeCollection = doc.collection('savedRecipes');
-      this.savedRecipeIds = [];
       savedRecipeCollection.valueChanges().subscribe(res => {
+        this.savedRecipeIds = [];
         this.addIdsToList(res);
       })
     }, err => {
@@ -56,7 +56,11 @@ export class ProfileComponent implements OnInit {
       this.savedRecipeIds.push(recipe.recipeId); 
     });
 
-    this.getRecipes();
+    if (this.savedRecipeIds.length > 0) {
+      this.getRecipes();
+    } else {
+      this.savedRecipes = [];
+    }
   }
 
   getNutrientFromRecipe(nutrient: string, recipe: any): string {
