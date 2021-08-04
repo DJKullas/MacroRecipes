@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeart2 } from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,12 +26,37 @@ export class RecipesListComponent implements OnInit {
   maxCalories: number;
   userId: string;
   faHeart = faHeart;
+  faHeart2 = faHeart2;
+  savedRecipeIds: string[];
 
   recipes: Object[];
 
   constructor(private readonly searchService: SearchService, private readonly sanitizer: DomSanitizer,
               public auth: AngularFireAuth, private readonly afs: AngularFirestore, private router: Router) { }
 
+
+  getSavedRecipes(): void {
+    this.savedRecipeIds = [];
+
+    this.auth.user.subscribe(res => {
+
+      if (res == null || res == undefined) {
+        return;
+      }
+
+      this.userId = res.uid;
+      var doc = this.afs.doc(`user/${this.userId}`);
+      var savedRecipeCollection = doc.collection('savedRecipes');
+      savedRecipeCollection.valueChanges().subscribe(res => {
+        this.savedRecipeIds = [];
+        res.forEach(recipe => {
+          this.savedRecipeIds.push(recipe.recipeId); 
+        });
+      })
+    }, err => {
+      this.router.navigate['/login'];
+    });
+  }
 
   saveRecipe(recipeId: string): void {
 
@@ -43,8 +69,6 @@ export class RecipesListComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
-
-    
   }
 
   search() {
@@ -105,6 +129,7 @@ export class RecipesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadListIfPresent();
+    this.getSavedRecipes();
   }
 
 }

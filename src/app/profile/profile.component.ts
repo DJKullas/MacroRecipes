@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { SearchService } from '../search.service';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +19,8 @@ export class ProfileComponent implements OnInit {
   savedRecipes: any[];
   savedRecipeIds: string[] = [];
   userId: string;
+  faHeart = faHeart;
+  recipeIdToDelete = "";
 
   populateSavedRecipeIds(): void {
     this.savedRecipes = null;
@@ -41,11 +44,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  deleteRecipe(recipeId: string): void {
+  setRecipeIdToDelete(recipeId: string): void {
+    this.recipeIdToDelete = recipeId;
+  }
+
+  deleteRecipe(): void {
     this.auth.user.subscribe(res => {
       this.userId = res.uid;
 
-      this.afs.doc(`user/${this.userId}/savedRecipes/${recipeId}`).delete().then(res => {
+      this.afs.doc(`user/${this.userId}/savedRecipes/${this.recipeIdToDelete}`).delete().then(res => {
         console.log(this.savedRecipes);
       });
     });

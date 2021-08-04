@@ -54,7 +54,12 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <h3 class="recipe-title"><a class="text-center" href="http://localhost:5000/recipe/{{ recipe.id }}">{{ recipe.title }}</a><button class="save-recipe-button btn btn-sm btn-success" (click)="saveRecipe(recipe.id)"><fa-icon [icon]="faHeart"></fa-icon></button></h3>
+                    <h3 class="recipe-title"><a class="text-center" href="http://localhost:5000/recipe/{{ recipe.id }}">{{ recipe.title }}</a>
+                        <button *ngIf="!savedRecipeIds.includes(recipe.id); else savedButton" class="save-recipe-button btn btn-sm btn-success" (click)="saveRecipe(recipe.id)"><fa-icon [icon]="faHeart"></fa-icon></button>
+                        <ng-template #savedButton>
+                            <button class="save-recipe-button btn btn-sm btn-success" (click)="deleteRecipe(recipe.id)"><fa-icon [icon]="faHeart2"></fa-icon></button>
+                        </ng-template>  
+                    </h3>
                 </div>
             </div>
             <div class="row">
