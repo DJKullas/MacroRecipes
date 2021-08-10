@@ -6,6 +6,7 @@
       </h1>
     </div>
   </div>
+
   <div class="row">
     <div class="col">
       <form #contactForm="ngForm" (ngSubmit)="sendEmail()">
@@ -15,7 +16,7 @@
           <input [(ngModel)]="name" name="name" type="text" class="form-control" id="name" placeholder="Name">
         </div>
       
-        <div class="form-group">
+        <div *ngIf="email != null" class="form-group">
           <label for="email">Email address</label>
           <input [(ngModel)]="email" name="email" type="email" class="form-control" id="email" placeholder="name@example.com">
         </div>
@@ -27,7 +28,7 @@
       
         <div class="form-group">
           <label for="recaptcha"></label>
-          <re-captcha [(ngModel)]="recaptcha" name="captcha" required
+          <re-captcha class="img-fluid" [(ngModel)]="recaptcha" name="captcha" required
         (resolved)="resolved($event)"
         siteKey="6Le528EbAAAAAPefDiBtpNPSDEidxDYJsX7Un4b0"></re-captcha>
         </div>

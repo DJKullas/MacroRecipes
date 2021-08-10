@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { SearchService } from '../search.service';
 
@@ -10,14 +11,30 @@ import { SearchService } from '../search.service';
 export class ContactComponent implements OnInit {
 
   name: string;
-  email: string;
+  email: string = null;
   message: string;
   recaptcha: any;
+  userId: string = null;
 
-  constructor(private readonly searchService: SearchService) { }
+  constructor(private readonly searchService: SearchService, public auth: AngularFireAuth) { }
 
   resolved(captchaResponse: string) {
     console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
+
+  checkIfUserLoggedIn() {
+    this.auth.user.subscribe(res => {
+
+      if (res == null || res == undefined) {
+        return;
+      }
+
+      this.userId = res.uid;
+      this.email = res.email;
+
+    }, err => {
+      
+    });
   }
 
   sendEmail(): void {
@@ -42,6 +59,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkIfUserLoggedIn();
   }
 
 }
