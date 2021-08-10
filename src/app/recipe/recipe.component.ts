@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { SearchService } from '../search.service';
 import { faHeart, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { Location } from '@angular/common'
 
 declare var require: any
 const fracty = require('fracty');
@@ -25,13 +26,20 @@ export class RecipeComponent implements OnInit {
   priceWidgetHtml: string;
 
   constructor(private readonly route: ActivatedRoute, private readonly searchService: SearchService,
-              public auth: AngularFireAuth, private readonly afs: AngularFirestore) {
+              public auth: AngularFireAuth, private readonly afs: AngularFirestore, private location: Location,
+              private router: Router) {
                 
                }
 
   saveRecipe(): void {
 
     this.auth.user.subscribe(res => {
+
+      if (res == null || res == undefined) {
+        this.router.navigate(['/login']);
+        return;
+      }
+
       this.userId = res.uid;
       this.afs.collection(`user/${this.userId}/savedRecipes`).doc(this.recipeId).set({'recipeId': this.recipeId});
       // var doc = this.afs.doc(`user/${this.userId}`);
@@ -46,6 +54,10 @@ export class RecipeComponent implements OnInit {
     });
 
     console.log("test")
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   getRecipe(recipeId: string) {

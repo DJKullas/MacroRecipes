@@ -15,6 +15,7 @@ export class ContactComponent implements OnInit {
   message: string;
   recaptcha: any;
   userId: string = null;
+  showEmail: boolean = true;
 
   constructor(private readonly searchService: SearchService, public auth: AngularFireAuth) { }
 
@@ -31,6 +32,10 @@ export class ContactComponent implements OnInit {
 
       this.userId = res.uid;
       this.email = res.email;
+
+      if (this.email != null) {
+        this.showEmail = false;
+      }
 
     }, err => {
       

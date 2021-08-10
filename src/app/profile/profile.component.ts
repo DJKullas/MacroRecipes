@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
         this.addIdsToList(res);
       })
     }, err => {
-      this.router.navigate['/login'];
+      this.router.navigate(['/login']);
     });
   }
 

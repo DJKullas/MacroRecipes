@@ -54,7 +54,7 @@ export class RecipesListComponent implements OnInit {
         });
       })
     }, err => {
-      this.router.navigate['/login'];
+      this.router.navigate(['/login']);
     });
   }
 
@@ -62,6 +62,10 @@ export class RecipesListComponent implements OnInit {
 
     if (this.auth.user != null) {
       this.auth.user.subscribe(res => {
+        if (res == null || res == undefined) {
+          this.router.navigate(['/login']);
+          return;
+        }
         this.userId = res.uid;
         this.afs.collection(`user/${this.userId}/savedRecipes`).doc(recipeId.toString()).set({'recipeId': recipeId});
       });

@@ -16,7 +16,7 @@
           <input [(ngModel)]="name" name="name" type="text" class="form-control" id="name" placeholder="Name">
         </div>
       
-        <div *ngIf="email == null" class="form-group">
+        <div *ngIf="showEmail" class="form-group">
           <label for="email">Email address</label>
           <input [(ngModel)]="email" name="email" type="email" class="form-control" id="email" placeholder="name@example.com">
         </div>

@@ -11,17 +11,12 @@
 <ng-template #elseBlock>
     <div class="row top-row">
         <div class="col">
-            <a href="http://localhost:5000/recipes" class="results-button btn btn-secondary btn-sm"><fa-icon [icon]="faChevronLeft"></fa-icon> Back to Results 
-            </a>
+            <button (click)="goBack()" class="results-button btn btn-secondary btn-sm"><fa-icon [icon]="faChevronLeft"></fa-icon> Back 
+            </button>
         </div>
         <div class="col">
-            <div *ngIf="auth.user | async as user; else showLogin">
-                <button class="save-recipe-button btn btn-sm btn-success" (click)="saveRecipe()">Save Recipe <fa-icon [icon]="faHeart"></fa-icon>
-                </button>
-            </div>
-              <ng-template #showLogin>
-                <button (click)="login()">Login with Google</button>
-              </ng-template>
+            <button class="save-recipe-button btn btn-sm btn-success" (click)="saveRecipe()">Save Recipe <fa-icon [icon]="faHeart"></fa-icon>
+            </button>
         </div>
     </div>
     <div class="row">
