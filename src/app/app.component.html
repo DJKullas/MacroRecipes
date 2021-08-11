@@ -5,18 +5,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" href="http://localhost:5000/recipes">Search</a>
-        <a class="nav-item nav-link" href="http://localhost:5000/profile">Profile</a>
-        <a class="nav-item nav-link" href="http://localhost:5000/contact">Report a Bug</a>
+        <a class="nav-item nav-link" href="/recipes">Search</a>
+        <a class="nav-item nav-link" href="/profile">Profile</a>
+        <a class="nav-item nav-link" href="/contact">Report a Bug</a>
       </div>
 
       <div class="nav navbar-nav flex-row justify-content-between ml-auto">
         <div *ngIf="auth.user | async as user; else showLogin">
           <span>Hello {{ user.displayName }}</span>
-            <a href="http://localhost:5000/login" role="button" (click)="logout()"> Logout</a>
+            <a href="/login" role="button" (click)="logout()"> Logout</a>
         </div>
         <ng-template #showLogin>
-          <a href="http://localhost:5000/login">Sign in</a>
+          <a href="/login">Sign in</a>
         </ng-template>
       </div>
     </div>
