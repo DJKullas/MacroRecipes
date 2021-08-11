@@ -65,9 +65,9 @@
             <h4 class="header">Nutrients</h4>
            
             <div>
-                <ul>
+                <ul class="align">
                     <li *ngFor="let nutrient of recipe.nutrition.nutrients">
-                        {{nutrient.name}}: {{nutrient.amount}}{{nutrient.unit}}
+                        <span>{{nutrient.name}}</span> {{nutrient.amount}}{{nutrient.unit}}
                     </li>
                 </ul>
             </div>
