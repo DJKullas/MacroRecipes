@@ -150,7 +150,9 @@ router.get('/contact', (req, res) => {
 
   router.get('/searchByMacros', (req, res) => {
 
-    var api = "https://api.spoonacular.com/recipes/findByNutrients?random=true&";
+    //var api = "https://api.spoonacular.com/recipes/findByNutrients?random=true&";
+
+    var api = "https://api.spoonacular.com/recipes/complexSearch?random=true&";
 
 
     if (!(req.query.minCarbs == "undefined")) {
