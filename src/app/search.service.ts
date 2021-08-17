@@ -16,11 +16,15 @@ export class SearchService {
     return this.http.get('/api/search', {params: {query: query}});
   }
 
-  searchByMacros(minCarbs: string, maxCarbs: string, minFat: string, maxFat: string, minProtein: string, maxProtein: string, minCalories: string, maxCalories: string) {
+  searchByMacros(minCarbs: string, maxCarbs: string, minFat: string, maxFat: string, minProtein: string, maxProtein: string, minCalories: string, maxCalories: string, 
+                 excludeIngredients: string, includeIngredients: string, queryString: string) {
     return this.http.get('/api/searchByMacros', {params: {minCarbs: minCarbs,maxCarbs: maxCarbs, 
                                                           minFat: minFat, maxFat: maxFat,
                                                           minProtein: minProtein, maxProtein: maxProtein,
-                                                          minCalories: minCalories, maxCalories: maxCalories}});
+                                                          minCalories: minCalories, maxCalories: maxCalories,
+                                                          excludeIngredients: excludeIngredients,
+                                                          includeIngredients: includeIngredients,
+                                                          queryString: queryString}});
   }
 
   getRecipe(recipeId: string) {

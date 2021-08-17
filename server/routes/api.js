@@ -152,7 +152,7 @@ router.get('/contact', (req, res) => {
 
     //var api = "https://api.spoonacular.com/recipes/findByNutrients?random=true&";
 
-    var api = "https://api.spoonacular.com/recipes/complexSearch?random=true&";
+    var api = "https://api.spoonacular.com/recipes/complexSearch?random=true&addRecipeNutrition=true&";
 
 
     if (!(req.query.minCarbs == "undefined")) {
@@ -186,6 +186,18 @@ router.get('/contact', (req, res) => {
 
     if (!(req.query.maxCalories == "undefined")) {
       api += "maxCalories=" + req.query.maxCalories + "&"
+    }
+
+    if (!(req.query.excludeIngredients == "undefined")) {
+      api += "excludeIngredients=" + req.query.excludeIngredients + "&"
+    }
+
+    if (!(req.query.includeIngredients == "undefined")) {
+      api += "includeIngredients=" + req.query.includeIngredients + "&"
+    }
+
+    if (!(req.query.queryString == "undefined")) {
+      api += "query=" + req.query.queryString + "&"
     }
 
     axios.get(`${api}apiKey=${apiKey}`)

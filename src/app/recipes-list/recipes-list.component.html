@@ -8,7 +8,14 @@
     
         <form>
             <div class="row">
-                <div class="from-group col-xs col-sm-6 col-md-3">
+                <div class="form-group col">
+                    <h5 class="input-header" for="queryString">Keywords - Leave Blank to Search All Recipes</h5>
+                    <input name="queryString" class="form-control" id="queryString" type="text" [(ngModel)]="queryString"
+                        placeholder="Keywords">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs col-sm-6 col-md-3">
                     <h5 class="input-header" for="minCarbs">Carbs</h5>
                     <input name="minCarbs" class="form-control" id="minCarbs" type="number" [(ngModel)]="minCarbs"
                         placeholder="Min Carbs">
@@ -38,6 +45,20 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="form-group col-xs col-sm-6 col-md-6">
+                    <h5 class="input-header" for="includeIngredients">Include Ingredients</h5>
+                    <input name="includeIngredients" class="form-control" id="includeIngredients" type="text" [(ngModel)]="includeIngredients"
+                        placeholder="Include Ingredients">
+                </div>
+                <div class="form-group col-xs col-sm-6 col-md-6">
+                    <h5 class="input-header" for="excludeIngredients">Exclude Ingredients</h5>
+                    <input name="excludeIngredientsotein" class="form-control" id="excludeIngredients" type="text" [(ngModel)]="excludeIngredients"
+                        placeholder="Exclude Ingredients">
+                </div>
+            </div>
+
+
             <button class="btn btn-primary" (click)="searchByMacros()">Search By Macros</button>
         </form>
    
@@ -66,13 +87,44 @@
                 <div class="center col-md">
                     <img class="img-fluid center recipe-image" src="{{ recipe.image }}">
                 </div>
+
                 <div class="col-md">
-                    <ul>
-                        <li><h5>Calories: {{ recipe.calories }}</h5></li>
-                        <li><h5>Carbs: {{ recipe.carbs }}</h5></li>
-                        <li><h5>Fat: {{ recipe.fat }}</h5></li>
-                        <li><h5>Protein: {{ recipe.protein }}</h5></li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-6">
+                            <ul>
+                                <li>Calories: {{ getNutrientInfo('Calories', recipe) }}</li>
+                                <li>Carbs: {{ getNutrientInfo('Carbohydrates', recipe) }}</li>
+                                <li>Fat: {{ getNutrientInfo('Fat', recipe) }}</li>
+                                <li>Protein: {{ getNutrientInfo('Protein', recipe) }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul>
+                                <li>Calcium: {{ getNutrientInfo('Calcium', recipe) }}</li>
+                                <li>Cholesterol: {{ getNutrientInfo('Cholesterol', recipe) }}</li>
+                                <li>Fiber: {{ getNutrientInfo('Fiber', recipe) }}</li>
+                                <li>Saturated Fat: {{ getNutrientInfo('Saturated Fat', recipe) }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <ul>
+                                <li>Iron: {{ getNutrientInfo('Iron', recipe) }}</li>
+                                <li>Magnesium: {{ getNutrientInfo('Magnesium', recipe) }}</li>
+                                <li>Zinc: {{ getNutrientInfo('Zinc', recipe) }}</li>
+                                <li>Copper: {{ getNutrientInfo('Copper', recipe) }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul>
+                                <li>Sugar: {{ getNutrientInfo('Sugar', recipe) }}</li>
+                                <li>Sodium: {{ getNutrientInfo('Sodium', recipe) }}</li>
+                                <li>Potassium: {{ getNutrientInfo('Potassium', recipe) }}</li>
+                                <li>Vitamin C: {{ getNutrientInfo('Vitamin C', recipe) }}</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

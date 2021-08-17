@@ -44,6 +44,21 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  getNutrientInfo(nutrient: string, recipe: any) {
+    var nutrientObject = recipe.nutrition.nutrients.find(x => x.name == nutrient);
+    var result: string;
+
+    if (nutrientObject != null && nutrientObject != undefined) {
+      result = nutrientObject?.amount?.toString().concat(nutrientObject?.unit?.toString());
+    } 
+    else {
+      result = "";
+    }
+
+
+    return result;
+  }
+
   setRecipeIdToDelete(recipeId: string): void {
     this.recipeIdToDelete = recipeId;
   }

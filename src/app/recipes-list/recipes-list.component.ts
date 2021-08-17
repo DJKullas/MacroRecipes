@@ -24,6 +24,10 @@ export class RecipesListComponent implements OnInit {
   maxProtein: number;
   minCalories: number;
   maxCalories: number;
+  excludeIngredients: string;
+  includeIngredients: string;
+  queryString: string;
+
   userId: string;
   faHeart = faHeart;
   faHeart2 = faHeart2;
@@ -88,17 +92,35 @@ export class RecipesListComponent implements OnInit {
     });
   }
 
+  getNutrientInfo(nutrient: string, recipe: any) {
+    var nutrientObject = recipe.nutrition.nutrients.find(x => x.name == nutrient);
+    var result: string;
+
+    if (nutrientObject != null && nutrientObject != undefined) {
+      result = nutrientObject?.amount?.toString().concat(nutrientObject?.unit?.toString());
+    } 
+    else {
+      result = "";
+    }
+
+
+    return result;
+  }
+
   searchByMacros() {
     this.recipes = null;
     this.searchService.searchByMacros(this.minCarbs?.toString(), this.maxCarbs?.toString(), 
                                       this.minFat?.toString(), this.maxFat?.toString(),
                                       this.minProtein?.toString(), this.maxProtein?.toString(),
-                                      this.minCalories?.toString(), this.maxCalories?.toString()).subscribe((data: string ) => {
+                                      this.minCalories?.toString(), this.maxCalories?.toString(),
+                                      this.excludeIngredients?.toString(), this.includeIngredients?.toString(),
+                                      this.queryString?.toString()).subscribe((data: string ) => {
       this.response = data;
       console.log("response Macros")
       console.log(this.response);
 
-      this.recipes = JSON.parse(JSON.stringify(this.response));
+      var results = JSON.parse(JSON.stringify(this.response));
+      this.recipes = results.results;
       localStorage.removeItem('recipes');
       localStorage.setItem('recipes', JSON.stringify(this.recipes));
       },
