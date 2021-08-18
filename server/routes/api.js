@@ -188,6 +188,38 @@ router.get('/contact', (req, res) => {
       api += "maxCalories=" + req.query.maxCalories + "&"
     }
 
+    if (!(req.query.minCholesterol == "undefined")) {
+      api += "minCholesterol=" + req.query.minCholesterol + "&"
+    }
+
+    if (!(req.query.maxCholesterol == "undefined")) {
+      api += "maxCholesterol=" + req.query.maxCholesterol + "&"
+    }
+
+    if (!(req.query.minSodium == "undefined")) {
+      api += "minSodium=" + req.query.minSodium + "&"
+    }
+
+    if (!(req.query.maxSodium == "undefined")) {
+      api += "maxSodium=" + req.query.maxSodium + "&"
+    }
+
+    if (!(req.query.minSugar == "undefined")) {
+      api += "minSugar=" + req.query.minSugar + "&"
+    }
+
+    if (!(req.query.maxSugar == "undefined")) {
+      api += "maxSugar=" + req.query.maxSugar + "&"
+    }
+
+    if (!(req.query.minFiber == "undefined")) {
+      api += "minFiber=" + req.query.minFiber + "&"
+    }
+
+    if (!(req.query.maxFiber == "undefined")) {
+      api += "maxFiber=" + req.query.maxFiber + "&"
+    }
+
     if (!(req.query.excludeIngredients == "undefined")) {
       api += "excludeIngredients=" + req.query.excludeIngredients + "&"
     }

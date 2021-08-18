@@ -17,14 +17,20 @@ export class SearchService {
   }
 
   searchByMacros(minCarbs: string, maxCarbs: string, minFat: string, maxFat: string, minProtein: string, maxProtein: string, minCalories: string, maxCalories: string, 
-                 excludeIngredients: string, includeIngredients: string, queryString: string) {
+                 excludeIngredients: string, includeIngredients: string, queryString: string, minCholesterol: string, maxCholesterol: string,
+                 minSodium: string, maxSodium: string, minSugar: string, maxSugar: string, minFiber: string, maxFiber: string) {
     return this.http.get('/api/searchByMacros', {params: {minCarbs: minCarbs,maxCarbs: maxCarbs, 
                                                           minFat: minFat, maxFat: maxFat,
                                                           minProtein: minProtein, maxProtein: maxProtein,
                                                           minCalories: minCalories, maxCalories: maxCalories,
                                                           excludeIngredients: excludeIngredients,
                                                           includeIngredients: includeIngredients,
-                                                          queryString: queryString}});
+                                                          queryString: queryString,
+                                                          minCholesterol: minCholesterol, maxCholesterol: maxCholesterol,
+                                                          minSodium: minSodium, maxSodium: maxSodium,
+                                                          minSugar: minSugar, maxSugar: maxSugar,
+                                                          minFiber: minFiber, maxFiber: maxFiber
+                                                        }});
   }
 
   getRecipe(recipeId: string) {

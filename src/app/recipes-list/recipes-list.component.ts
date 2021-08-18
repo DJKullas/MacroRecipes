@@ -24,6 +24,15 @@ export class RecipesListComponent implements OnInit {
   maxProtein: number;
   minCalories: number;
   maxCalories: number;
+  minSodium: number;
+  maxSodium: number;
+  minSugar: number;
+  maxSugar: number;
+  minFiber: number;
+  maxFiber: number;
+  minCholesterol: number;
+  maxCholesterol: number;
+
   excludeIngredients: string;
   includeIngredients: string;
   queryString: string;
@@ -114,7 +123,11 @@ export class RecipesListComponent implements OnInit {
                                       this.minProtein?.toString(), this.maxProtein?.toString(),
                                       this.minCalories?.toString(), this.maxCalories?.toString(),
                                       this.excludeIngredients?.toString(), this.includeIngredients?.toString(),
-                                      this.queryString?.toString()).subscribe((data: string ) => {
+                                      this.queryString?.toString(),
+                                      this.minCholesterol?.toString(), this.maxCholesterol?.toString(),
+                                      this.minSodium?.toString(), this.maxSodium?.toString(),
+                                      this.minSugar?.toString(), this.maxSugar?.toString(),
+                                      this.minFiber?.toString(), this.maxFiber?.toString()).subscribe((data: string ) => {
       this.response = data;
       console.log("response Macros")
       console.log(this.response);

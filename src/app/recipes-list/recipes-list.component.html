@@ -46,6 +46,37 @@
             </div>
 
             <div class="row">
+                <div class="form-group col-xs col-sm-6 col-md-3">
+                    <h5 class="input-header" for="minSugar">Sugar</h5>
+                    <input name="minSugar" class="form-control" id="minSugar" type="number" [(ngModel)]="minSugar"
+                        placeholder="Min Sugar">
+                    <input name="maxSugar" class="form-control" id="maxSugar" type="number" [(ngModel)]="maxSugar"
+                        placeholder="Max Sugar">
+                </div>
+                <div class="form-group col-xs col-sm-6 col-md-3">
+                    <h5 class="input-header" for="minSodium">Sodium</h5>
+                    <input name="minSodium" class="form-control" id="minSodium" type="number" [(ngModel)]="minSodium"
+                        placeholder="Min Sodium">
+                    <input name="maxSodium" class="form-control" id="maxSodium" type="number" [(ngModel)]="maxSodium"
+                        placeholder="Max Sodium">
+                </div>
+                <div class="form-group col-xs col-sm-6 col-md-3">
+                    <h5 class="input-header" for="minFiber">Fiber</h5>
+                    <input name="minFiber" class="form-control" id="minFiber" type="number" [(ngModel)]="minFiber"
+                        placeholder="Min Fiber">
+                    <input name="maxFiber" class="form-control" id="maxFiber" type="number" [(ngModel)]="maxFiber"
+                        placeholder="Max Fiber">
+                </div>
+                <div class="form-group col-xs col-sm-6 col-md-3">
+                    <h5 class="input-header" for="minCholesterol">Cholesterol</h5>
+                    <input name="minCholesterol" class="form-control" id="minCholesterol" type="number"
+                        [(ngModel)]="minCholesterol" placeholder="Min Cholesterol">
+                    <input name="maxCholesterol" class="form-control" id="maxCholesterol" type="number"
+                        [(ngModel)]="maxCholesterol" placeholder="Max Cholseterol">
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="form-group col-xs col-sm-6 col-md-6">
                     <h5 class="input-header" for="includeIngredients">Include Ingredients</h5>
                     <input name="includeIngredients" class="form-control" id="includeIngredients" type="text" [(ngModel)]="includeIngredients"
