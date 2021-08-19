@@ -31,3 +31,17 @@
     position: absolute;
     left: 94%;
 }
+
+.align span {
+    display: inline-block;
+    width: 60%;
+    position: relative;
+    padding-right: 10px; /* Ensures colon does not overlay the text */
+  }
+  
+  .align span::after {
+    content: ":";
+    position: absolute;
+    right: 10px;
+    display: inline-block;
+  }

@@ -26,47 +26,48 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="center col-md">
+                    <div class="center col-lg">
                         <img class="img-fluid center recipe-image" src="{{ recipe.image }}">
                     </div>
-                    <div class="col-md">
-                      <div class="row">
-                          <div class="col-6">
-                              <ul>
-                                  <li>Calories: {{ getNutrientInfo('Calories', recipe) }}</li>
-                                  <li>Carbs: {{ getNutrientInfo('Carbohydrates', recipe) }}</li>
-                                  <li>Fat: {{ getNutrientInfo('Fat', recipe) }}</li>
-                                  <li>Protein: {{ getNutrientInfo('Protein', recipe) }}</li>
-                              </ul>
-                          </div>
-                          <div class="col-6">
-                              <ul>
-                                  <li>Calcium: {{ getNutrientInfo('Calcium', recipe) }}</li>
-                                  <li>Cholesterol: {{ getNutrientInfo('Cholesterol', recipe) }}</li>
-                                  <li>Fiber: {{ getNutrientInfo('Fiber', recipe) }}</li>
-                                  <li>Saturated Fat: {{ getNutrientInfo('Saturated Fat', recipe) }}</li>
-                              </ul>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-6">
-                              <ul>
-                                  <li>Iron: {{ getNutrientInfo('Iron', recipe) }}</li>
-                                  <li>Magnesium: {{ getNutrientInfo('Magnesium', recipe) }}</li>
-                                  <li>Zinc: {{ getNutrientInfo('Zinc', recipe) }}</li>
-                                  <li>Copper: {{ getNutrientInfo('Copper', recipe) }}</li>
-                              </ul>
-                          </div>
-                          <div class="col-6">
-                              <ul>
-                                  <li>Sugar: {{ getNutrientInfo('Sugar', recipe) }}</li>
-                                  <li>Sodium: {{ getNutrientInfo('Sodium', recipe) }}</li>
-                                  <li>Potassium: {{ getNutrientInfo('Potassium', recipe) }}</li>
-                                  <li>Vitamin C: {{ getNutrientInfo('Vitamin C', recipe) }}</li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
+    
+                    <div class="col-lg">
+                        <div class="row">
+                            <div class="col-sm-6 align">
+                                <ul>
+                                    <li><span>Calories</span> {{ getNutrientInfo('Calories', recipe) }}</li>
+                                    <li><span>Carbs</span> {{ getNutrientInfo('Carbohydrates', recipe) }}</li>
+                                    <li><span>Fat</span> {{ getNutrientInfo('Fat', recipe) }}</li>
+                                    <li><span>Protein</span> {{ getNutrientInfo('Protein', recipe) }}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6 align">
+                                <ul>
+                                    <li><span>Calcium</span> {{ getNutrientInfo('Calcium', recipe) }}</li>
+                                    <li><span>Cholesterol</span> {{ getNutrientInfo('Cholesterol', recipe) }}</li>
+                                    <li><span>Fiber</span> {{ getNutrientInfo('Fiber', recipe) }}</li>
+                                    <li><span>Sat. Fat</span> {{ getNutrientInfo('Saturated Fat', recipe) }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 align">
+                                <ul>
+                                    <li><span>Iron</span> {{ getNutrientInfo('Iron', recipe) }}</li>
+                                    <li><span>Magnesium</span> {{ getNutrientInfo('Magnesium', recipe) }}</li>
+                                    <li><span>Zinc</span> {{ getNutrientInfo('Zinc', recipe) }}</li>
+                                    <li><span>Copper</span> {{ getNutrientInfo('Copper', recipe) }}</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6 align">
+                                <ul>
+                                    <li><span>Sugar</span> {{ getNutrientInfo('Sugar', recipe) }}</li>
+                                    <li><span>Sodium</span> {{ getNutrientInfo('Sodium', recipe) }}</li>
+                                    <li><span>Potassium</span> {{ getNutrientInfo('Potassium', recipe) }}</li>
+                                    <li><span>Vitamin C</span> {{ getNutrientInfo('Vitamin C', recipe) }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
         
                 </div>
             </div>

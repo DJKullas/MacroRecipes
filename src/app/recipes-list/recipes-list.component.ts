@@ -106,7 +106,7 @@ export class RecipesListComponent implements OnInit {
     var result: string;
 
     if (nutrientObject != null && nutrientObject != undefined) {
-      result = nutrientObject?.amount?.toString().concat(nutrientObject?.unit?.toString());
+      result = nutrientObject?.amount?.toFixed(0).toString().concat(nutrientObject?.unit?.toString());
     } 
     else {
       result = "";
