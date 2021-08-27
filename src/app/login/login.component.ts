@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
           document.getElementById('loader').style.display = 'none';
         }
       },
-      signInSuccessUrl: 'http://localhost:5000/profile',
+      signInSuccessUrl: '/profile',
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
