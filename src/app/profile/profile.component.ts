@@ -120,7 +120,57 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  async getCustomClaimRole() {
+
+    this.auth.user.subscribe(async res => {
+      res.getIdToken(true);
+      const decodedToken = await res.getIdTokenResult();
+      console.log(decodedToken.claims.stripeRole);
+      return decodedToken.claims.stripeRole;
+    });
+
+    (await this.auth.currentUser).getIdToken(true);
+    const decodedToken = (await this.auth.currentUser).getIdTokenResult();
+    console.log((await decodedToken).claims.stripeRole)
+    return (await decodedToken).claims.stripeRole;
+  }
+
+  async subscribeToPremium() {
+
+
+    this.auth.user.subscribe(async res => {
+      const docRef = await this.afs
+  .collection('user')
+  .doc(res.uid)
+  .collection('checkout_sessions')
+  .add({
+    price: 'price_1JQ3nfK1Gx30f6PHHaywcsEv',
+    success_url: window.location.origin,
+    cancel_url: window.location.origin,
+  });
+// Wait for the CheckoutSession to get attached by the extension
+docRef.onSnapshot((snap) => {
+  const { error, url } = snap.data();
+  if (error) {
+    // Show an error to your customer and 
+    // inspect your Cloud Function logs in the Firebase console.
+    alert(`An error occured: ${error.message}`);
+  }
+  if (url) {
+    // We have a Stripe Checkout URL, let's redirect.
+    window.location.assign(url);
+  }
+});
+    });
+
+
+
+    
+  }
+
   ngOnInit(): void {
+  //this.getCustomClaimRole();
+  //this.subscribeToPremium()
   this.populateSavedRecipeIds(); 
 
   }
