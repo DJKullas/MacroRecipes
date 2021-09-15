@@ -24,6 +24,7 @@ export class RecipeComponent implements OnInit {
   faChevronLeft = faChevronLeft;
   nutritionWidgetHtml: string;
   priceWidgetHtml: string;
+  role: string;
 
   constructor(private readonly route: ActivatedRoute, private readonly searchService: SearchService,
               public auth: AngularFireAuth, private readonly afs: AngularFirestore, private location: Location,
@@ -58,6 +59,50 @@ export class RecipeComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  async subscribeToPremium() {
+
+
+    this.auth.user.subscribe(async res => {
+      const docRef = await this.afs
+  .collection('user')
+  .doc(res.uid)
+  .collection('checkout_sessions')
+  .add({
+    price: 'price_1JQ3nfK1Gx30f6PHHaywcsEv',
+    success_url: window.location.origin,
+    cancel_url: window.location.origin,
+  });
+// Wait for the CheckoutSession to get attached by the extension
+docRef.onSnapshot((snap) => {
+  const { error, url } = snap.data();
+  if (error) {
+    // Show an error to your customer and 
+    // inspect your Cloud Function logs in the Firebase console.
+    alert(`An error occured: ${error.message}`);
+  }
+  if (url) {
+    // We have a Stripe Checkout URL, let's redirect.
+    window.location.assign(url);
+  }
+});
+    });
+
+
+
+    
+  }
+
+  async getCustomClaimRole() {
+
+    this.auth.user.subscribe(async res => {
+      res.getIdToken(true);
+      const decodedToken = await res.getIdTokenResult();
+      console.log(decodedToken.claims.stripeRole);
+      this.role = decodedToken.claims.stripeRole;
+      return decodedToken.claims.stripeRole;
+    });
   }
 
   getRecipe(recipeId: string) {
@@ -130,6 +175,7 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {
     this.recipeId = this.route.snapshot.paramMap.get("recipeId");
     this.getRecipe(this.recipeId);
+    this.getCustomClaimRole();
     
     //this.getRecipeInstructions(this.recipeId);
   }

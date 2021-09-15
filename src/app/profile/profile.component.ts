@@ -128,11 +128,6 @@ export class ProfileComponent implements OnInit {
       console.log(decodedToken.claims.stripeRole);
       return decodedToken.claims.stripeRole;
     });
-
-    (await this.auth.currentUser).getIdToken(true);
-    const decodedToken = (await this.auth.currentUser).getIdTokenResult();
-    console.log((await decodedToken).claims.stripeRole)
-    return (await decodedToken).claims.stripeRole;
   }
 
   async subscribeToPremium() {
@@ -169,7 +164,7 @@ docRef.onSnapshot((snap) => {
   }
 
   ngOnInit(): void {
-  //this.getCustomClaimRole();
+  this.getCustomClaimRole();
   //this.subscribeToPremium()
   this.populateSavedRecipeIds(); 
 

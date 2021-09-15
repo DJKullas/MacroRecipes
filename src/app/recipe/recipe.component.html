@@ -34,7 +34,11 @@
     </div>
     <div class="row">
         <div class="col-md">
-            <div [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
+            <div *ngIf="role == 'premium'; else notPremium" [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
+            <ng-template #notPremium>
+                <p>Subscribe to Premium to View the Nutriton Widget</p>
+                <button class="btn btn-primary" (click)="subscribeToPremium()">Click here to Subscribe</button>
+            </ng-template>
         </div>
         <div class="col-md">
             <div [innerHtml]="nutritionWidgetHtml | safeHtml"></div>
