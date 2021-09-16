@@ -164,9 +164,10 @@ docRef.onSnapshot((snap) => {
   }
 
   ngOnInit(): void {
-  this.getCustomClaimRole();
+  //this.getCustomClaimRole();
   //this.subscribeToPremium()
   this.populateSavedRecipeIds(); 
+  this.searchService.getCustomClaimRole(this.auth);
 
   }
 

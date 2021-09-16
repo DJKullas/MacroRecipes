@@ -58,4 +58,14 @@ export class SearchService {
     return this.http.get('/api/contact', {params: {name: name, email: email, message: message}});
   }
 
+  async getCustomClaimRole(auth) {
+
+    auth.user.subscribe(async res => {
+      res.getIdToken(true);
+      const decodedToken = await res.getIdTokenResult();
+      console.log(decodedToken.claims.stripeRole);
+      return decodedToken.claims.stripeRole;
+    });
+  }
+
 }
