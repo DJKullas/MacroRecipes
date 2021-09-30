@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 router.get('/search', (req, res) => {
     axios.get(`${API}?ingredients=${req.query.query}&apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {
-        console.log("GOOD");
           res.status(200).json(data.data);
       })
       .catch(error => {
@@ -33,7 +32,6 @@ router.get('/search', (req, res) => {
 
     axios.get(`${api}apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {
-        console.log("GOOD");
     
        // console.log(data)
           res.status(200).json(data.data);
@@ -49,7 +47,6 @@ router.get('/search', (req, res) => {
 
     axios.get(`${api}apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {
-        console.log("GOOD");
         
         
 
@@ -66,7 +63,6 @@ router.get('/search', (req, res) => {
 
     axios.get(`${api}apiKey=${process.env.RECIPE_KEY}`)
       .then(data => {
-        console.log("GOOD");
     
        // console.log(data)
           res.status(200).json(data.data);
@@ -154,6 +150,9 @@ router.get('/contact', (req, res) => {
 
     var api = "https://api.spoonacular.com/recipes/complexSearch?random=true&addRecipeNutrition=true&";
 
+    var role = req.query.role;
+
+    console.log(req.query.role);
 
     if (!(req.query.minCarbs == "undefined")) {
       api += "minCarbs=" + req.query.minCarbs + "&"
@@ -220,21 +219,23 @@ router.get('/contact', (req, res) => {
       api += "maxFiber=" + req.query.maxFiber + "&"
     }
 
-    if (!(req.query.excludeIngredients == "undefined")) {
-      api += "excludeIngredients=" + req.query.excludeIngredients + "&"
-    }
-
-    if (!(req.query.includeIngredients == "undefined")) {
-      api += "includeIngredients=" + req.query.includeIngredients + "&"
-    }
-
     if (!(req.query.queryString == "undefined")) {
       api += "query=" + req.query.queryString + "&"
     }
 
+    if (role == "premium") {
+      console.log("excluding and including")
+      if (!(req.query.excludeIngredients == "undefined")) {
+        api += "excludeIngredients=" + req.query.excludeIngredients + "&"
+      }
+  
+      if (!(req.query.includeIngredients == "undefined")) {
+        api += "includeIngredients=" + req.query.includeIngredients + "&"
+      }
+    }
+
     axios.get(`${api}apiKey=${apiKey}`)
       .then(data => {
-        console.log("GOOD");
     
         //console.log(data)
           res.status(200).json(data.data);

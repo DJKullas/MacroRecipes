@@ -42,6 +42,11 @@ export class RecipesListComponent implements OnInit {
   faHeart2 = faHeart2;
   savedRecipeIds: string[];
 
+  role: string;
+
+  includeIngredientsPlaceholder: string;
+  excludeIngredientsPlaceholder: string;
+
   recipes: Object[];
 
   constructor(private readonly searchService: SearchService, private readonly sanitizer: DomSanitizer,
@@ -127,7 +132,7 @@ export class RecipesListComponent implements OnInit {
                                       this.minCholesterol?.toString(), this.maxCholesterol?.toString(),
                                       this.minSodium?.toString(), this.maxSodium?.toString(),
                                       this.minSugar?.toString(), this.maxSugar?.toString(),
-                                      this.minFiber?.toString(), this.maxFiber?.toString()).subscribe((data: string ) => {
+                                      this.minFiber?.toString(), this.maxFiber?.toString(), this.role?.toString()).subscribe((data: string ) => {
       this.response = data;
       console.log("response Macros")
       console.log(this.response);
@@ -166,7 +171,33 @@ export class RecipesListComponent implements OnInit {
 
   }
 
+  initializePlaceholders() {
+
+    console.log("ROLE: " + this.role)
+
+    if (this.role == "premium") {
+      this.includeIngredientsPlaceholder = "Include Ingredients (comma separated)";
+      this.excludeIngredientsPlaceholder = "Exclude Ingredients (comma separated)";
+    } else {
+      this.includeIngredientsPlaceholder = "Subscribe to Premium to Include Ingredients";
+      this.excludeIngredientsPlaceholder = "Subscribe to Premium to Exclude Ingredients";
+    }
+  }
+
+  async getCustomClaimRole() {
+
+    this.auth.user.subscribe(async res => {
+      res.getIdToken(true);
+      const decodedToken = await res.getIdTokenResult();
+      console.log(decodedToken.claims.stripeRole);
+      this.role = decodedToken.claims.stripeRole;
+      this.initializePlaceholders();
+      return decodedToken.claims.stripeRole;
+    });
+  }
+
   ngOnInit(): void {
+    this.getCustomClaimRole();
     this.loadListIfPresent();
     this.getSavedRecipes();
   }

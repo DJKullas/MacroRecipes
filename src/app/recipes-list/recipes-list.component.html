@@ -79,13 +79,13 @@
             <div class="row">
                 <div class="form-group col-xs col-sm-6 col-md-6">
                     <h5 class="input-header" for="includeIngredients">Include Ingredients</h5>
-                    <input name="includeIngredients" class="form-control" id="includeIngredients" type="text" [(ngModel)]="includeIngredients"
-                        placeholder="Include Ingredients">
+                    <input [disabled]="role != 'premium'" name="includeIngredients" class="form-control" id="includeIngredients" type="text" [(ngModel)]="includeIngredients"
+                        [attr.placeholder]="includeIngredientsPlaceholder">
                 </div>
                 <div class="form-group col-xs col-sm-6 col-md-6">
                     <h5 class="input-header" for="excludeIngredients">Exclude Ingredients</h5>
-                    <input name="excludeIngredientsotein" class="form-control" id="excludeIngredients" type="text" [(ngModel)]="excludeIngredients"
-                        placeholder="Exclude Ingredients">
+                    <input [disabled]="role != 'premium'" name="excludeIngredientsotein" class="form-control" id="excludeIngredients" type="text" [(ngModel)]="excludeIngredients"
+                   placeholder="{{excludeIngredientsPlaceholder}}">
                 </div>
             </div>
 

@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   userId: string;
   faHeart = faHeart;
   recipeIdToDelete = "";
+  role: string;
 
   populateSavedRecipeIds(): void {
     this.savedRecipes = null;
@@ -126,6 +127,7 @@ export class ProfileComponent implements OnInit {
       res.getIdToken(true);
       const decodedToken = await res.getIdTokenResult();
       console.log(decodedToken.claims.stripeRole);
+      this.role = decodedToken.claims.stripeRole;
       return decodedToken.claims.stripeRole;
     });
   }
@@ -164,11 +166,9 @@ docRef.onSnapshot((snap) => {
   }
 
   ngOnInit(): void {
-  //this.getCustomClaimRole();
+  this.getCustomClaimRole();
   //this.subscribeToPremium()
   this.populateSavedRecipeIds(); 
-  this.searchService.getCustomClaimRole(this.auth);
-
   }
 
 }

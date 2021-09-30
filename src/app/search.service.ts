@@ -18,7 +18,7 @@ export class SearchService {
 
   searchByMacros(minCarbs: string, maxCarbs: string, minFat: string, maxFat: string, minProtein: string, maxProtein: string, minCalories: string, maxCalories: string, 
                  excludeIngredients: string, includeIngredients: string, queryString: string, minCholesterol: string, maxCholesterol: string,
-                 minSodium: string, maxSodium: string, minSugar: string, maxSugar: string, minFiber: string, maxFiber: string) {
+                 minSodium: string, maxSodium: string, minSugar: string, maxSugar: string, minFiber: string, maxFiber: string, role?: string) {
     return this.http.get('/api/searchByMacros', {params: {minCarbs: minCarbs,maxCarbs: maxCarbs, 
                                                           minFat: minFat, maxFat: maxFat,
                                                           minProtein: minProtein, maxProtein: maxProtein,
@@ -29,7 +29,7 @@ export class SearchService {
                                                           minCholesterol: minCholesterol, maxCholesterol: maxCholesterol,
                                                           minSodium: minSodium, maxSodium: maxSodium,
                                                           minSugar: minSugar, maxSugar: maxSugar,
-                                                          minFiber: minFiber, maxFiber: maxFiber
+                                                          minFiber: minFiber, maxFiber: maxFiber, role: role
                                                         }});
   }
 
@@ -56,16 +56,6 @@ export class SearchService {
   sendEmail(name: string, email: string, message:string) {
     console.log("SENDING EMAIL")
     return this.http.get('/api/contact', {params: {name: name, email: email, message: message}});
-  }
-
-  async getCustomClaimRole(auth) {
-
-    auth.user.subscribe(async res => {
-      res.getIdToken(true);
-      const decodedToken = await res.getIdTokenResult();
-      console.log(decodedToken.claims.stripeRole);
-      return decodedToken.claims.stripeRole;
-    });
   }
 
 }
