@@ -144,8 +144,31 @@ docRef.onSnapshot((snap) => {
     
       this.nutritionWidgetHtml = JSON.parse(JSON.stringify(response));
 
-      console.log(this.nutritionWidgetHtml);
-      },
+      var el = document.createElement("script");
+      el.setAttribute("type", "text/javascript");
+      el.setAttribute("src", "https://code.jquery.com/jquery-1.9.1.min.js");
+      var widget: any = document.getElementById('nutritionWidget');
+      widget.contentDocument.head.appendChild(el);
+
+      el = document.createElement("script");
+      el.setAttribute("type", "text/javascript");
+      el.setAttribute("src", "https://spoonacular.com/application/frontend/js/jquery.canvasjs.min");
+      widget.contentDocument.head.appendChild(el);
+
+      // wait until jquery is loaded
+      setTimeout(function () {
+          var widget: any = document.getElementById('nutritionWidget');
+          var iframeDocument = widget.contentDocument;
+          iframeDocument.open();
+          iframeDocument.write(response);
+          iframeDocument.close();
+
+          var el = document.createElement("script");
+          el.setAttribute("type", "text/javascript");
+          el.setAttribute("src", "https://spoonacular.com/application/frontend/js/nutritionWidget.min.js?c=1");
+         widget.contentDocument.body.appendChild(el);
+      }, 1000);
+    },
     error => {
       console.log("DEF");
 
@@ -158,6 +181,31 @@ docRef.onSnapshot((snap) => {
       var response = data;
     
       this.priceWidgetHtml = JSON.parse(JSON.stringify(response));
+
+      var el = document.createElement("script");
+      el.setAttribute("type", "text/javascript");
+      el.setAttribute("src", "https://code.jquery.com/jquery-1.9.1.min.js");
+      var widget: any = document.getElementById('priceWidget')
+      widget.contentDocument.head.appendChild(el);
+
+      el = document.createElement("script");
+      el.setAttribute("type", "text/javascript");
+      el.setAttribute("src", "https://spoonacular.com/application/frontend/js/jquery.canvasjs.min");
+      widget.contentDocument.head.appendChild(el);
+
+      // wait until jquery is loaded
+      setTimeout(function () {
+          var widget: any = document.getElementById('priceWidget')
+          var el = document.createElement("script");
+          el.setAttribute("type", "text/javascript");
+          el.setAttribute("src", "https://spoonacular.com/application/frontend/js/ingredientWidget.min.js?c=1");
+          widget.contentDocument.body.appendChild(el);
+
+          var iframeDocument = widget.contentDocument;
+          iframeDocument.open();
+          iframeDocument.write(response);
+          iframeDocument.close();
+      }, 1000);
 
       console.log(this.priceWidgetHtml);
       },
