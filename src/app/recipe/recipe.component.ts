@@ -222,10 +222,12 @@ docRef.onSnapshot((snap) => {
 
   ngOnInit(): void {
     this.recipeId = this.route.snapshot.paramMap.get("recipeId");
+    //this.getRecipeInstructions(this.recipeId);
+  }
+
+  ngAfterViewInit(): void {
     this.getRecipe(this.recipeId);
     this.getCustomClaimRole();
-    
-    //this.getRecipeInstructions(this.recipeId);
   }
 
 }

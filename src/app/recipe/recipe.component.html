@@ -34,6 +34,7 @@
     </div>
     <div class="row">
         <div class="col-md">
+            <h4 class="header">Nutrition Widget (click on sections for more info)</h4>
             <div *ngIf="role == 'premium'; else notPremium">
                 <iframe id="nutritionWidget"></iframe>
             </div>
@@ -43,7 +44,14 @@
             </ng-template>
         </div>
         <div class="col-md">
-            <iframe id="priceWidget"></iframe>
+            <h4 class="header">Price Widget (click on sections for more info)</h4>
+            <div *ngIf="role == 'premium'; else notPremium2">
+                <iframe id="priceWidget"></iframe>
+            </div>
+            <ng-template #notPremium2>
+                <p>Subscribe to Premium to View the Price Widget</p>
+                <button class="btn btn-primary" (click)="subscribeToPremium()">Click here to Subscribe</button>
+            </ng-template>
         </div>
      </div>
     <div class="row">

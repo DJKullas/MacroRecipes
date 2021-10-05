@@ -43,6 +43,8 @@ export class RecipesListComponent implements OnInit {
   savedRecipeIds: string[];
 
   role: string;
+  maxFreeSaves: number = 5;
+  allowedToAddMoreRecipes = true;
 
   includeIngredientsPlaceholder: string;
   excludeIngredientsPlaceholder: string;
@@ -67,6 +69,9 @@ export class RecipesListComponent implements OnInit {
       var savedRecipeCollection = doc.collection('savedRecipes');
       savedRecipeCollection.valueChanges().subscribe(res => {
         this.savedRecipeIds = [];
+        if (!(this.role == 'premium') && res.length >= this.maxFreeSaves) {
+          this.allowedToAddMoreRecipes = false;
+        }
         res.forEach(recipe => {
           this.savedRecipeIds.push(recipe.recipeId); 
         });
@@ -78,6 +83,11 @@ export class RecipesListComponent implements OnInit {
 
   saveRecipe(recipeId: string): void {
 
+    if (!this.allowedToAddMoreRecipes) {
+      alert("MAKE THIS LOOK BETTER LATER. You are not allowed to add more recipes. Please subscribe.");
+      return;
+    }
+
     if (this.auth.user != null) {
       this.auth.user.subscribe(res => {
         if (res == null || res == undefined) {
@@ -85,6 +95,7 @@ export class RecipesListComponent implements OnInit {
           return;
         }
         this.userId = res.uid;
+        
         this.afs.collection(`user/${this.userId}/savedRecipes`).doc(recipeId.toString()).set({'recipeId': recipeId});
       });
   
