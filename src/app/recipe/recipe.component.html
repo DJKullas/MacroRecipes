@@ -15,8 +15,10 @@
             </button>
         </div>
         <div class="col">
-            <button class="save-recipe-button btn btn-sm btn-success" (click)="saveRecipe()">Save Recipe <fa-icon [icon]="faHeart"></fa-icon>
-            </button>
+            <button *ngIf="!isRecipeSaved; else savedButton" class="save-recipe-button btn btn-sm btn-success" (click)="saveRecipe(recipe.id)"><fa-icon [icon]="faHeart"></fa-icon></button>
+            <ng-template #savedButton>
+                <button class="save-recipe-button btn btn-sm btn-success" (click)="deleteRecipe(recipe.id)"><fa-icon [icon]="faHeart2"></fa-icon></button>
+            </ng-template>  
         </div>
     </div>
     <div class="row">

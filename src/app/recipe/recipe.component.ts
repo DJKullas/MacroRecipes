@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { SearchService } from '../search.service';
 import { faHeart, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Location } from '@angular/common'
+import { faHeart as faHeart2 } from '@fortawesome/free-regular-svg-icons';
 
 declare var require: any
 const fracty = require('fracty');
@@ -25,6 +26,10 @@ export class RecipeComponent implements OnInit {
   nutritionWidgetHtml: string;
   priceWidgetHtml: string;
   role: string;
+  maxFreeSaves: number = 5;
+  allowedToAddMoreRecipes = true;
+  faHeart2 = faHeart2;
+  isRecipeSaved: boolean = false;
 
   constructor(private readonly route: ActivatedRoute, private readonly searchService: SearchService,
               public auth: AngularFireAuth, private readonly afs: AngularFirestore, private location: Location,
@@ -32,29 +37,42 @@ export class RecipeComponent implements OnInit {
                 
                }
 
+  checkIfRecipeSaved() {
+
+    var doc = this.afs.doc(`user/${this.userId}`);
+    var savedRecipeCollection = doc.collection('savedRecipes');
+    savedRecipeCollection.valueChanges().subscribe(res => {
+
+      if (!(this.role == 'premium') && res.length >= this.maxFreeSaves) {
+        this.allowedToAddMoreRecipes = false;
+      } else {
+        this.allowedToAddMoreRecipes = true;
+      }
+      res.forEach(recipe => {
+
+        if (this.recipeId == recipe.recipeId) {
+          this.isRecipeSaved = true;
+          return;
+        }
+      });
+    })
+  }
+
   saveRecipe(): void {
 
-    this.auth.user.subscribe(res => {
-
-      if (res == null || res == undefined) {
+      if (!this.userId) {
         this.router.navigate(['/login']);
+            return;
+      } 
+
+      if (!this.allowedToAddMoreRecipes) {
+        alert("MAKE THIS LOOK BETTER LATER. You are not allowed to add more recipes. Please subscribe.");
         return;
       }
-
-      this.userId = res.uid;
-      this.afs.collection(`user/${this.userId}/savedRecipes`).doc(this.recipeId).set({'recipeId': this.recipeId});
-      // var doc = this.afs.doc(`user/${this.userId}`);
-      // var savedRecipes = doc.collection('savedRecipes');
-      // var test = savedRecipes.valueChanges().subscribe(res => {
-      //   res.forEach(x => {
-      //     console.log(x.recipeId);
-      //   })
-      // })
-      // console.log("Saved Recipes: " + savedRecipes[0]);
-      // console.log("test: " + test);
-    });
-
-    console.log("test")
+      else {
+        this.afs.collection(`user/${this.userId}/savedRecipes`).doc(this.recipeId.toString()).set({'recipeId': this.recipeId});
+        this.isRecipeSaved = true;
+      }
   }
 
   goBack(): void {
@@ -215,9 +233,28 @@ docRef.onSnapshot((snap) => {
     });
   }
 
+  deleteRecipe(recipeId: string): void {
+    this.auth.user.subscribe(res => {
+      this.userId = res.uid;
+
+      this.afs.doc(`user/${this.userId}/savedRecipes/${recipeId}`).delete().then(res => {
+        this.isRecipeSaved = false;
+      });
+    });
+  }
+
   convertToFraction(decimal: number): number {
     var result = fracty(decimal);
     return result;
+  }
+
+  getUserId() {
+    this.auth.user.subscribe(res => {
+      this.userId = res.uid;
+      this.getRecipe(this.recipeId);
+      this.getCustomClaimRole();
+      this.checkIfRecipeSaved();
+    });
   }
 
   ngOnInit(): void {
@@ -226,8 +263,7 @@ docRef.onSnapshot((snap) => {
   }
 
   ngAfterViewInit(): void {
-    this.getRecipe(this.recipeId);
-    this.getCustomClaimRole();
+    this.getUserId();
   }
 
 }

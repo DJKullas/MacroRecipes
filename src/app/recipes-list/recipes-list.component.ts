@@ -71,6 +71,8 @@ export class RecipesListComponent implements OnInit {
         this.savedRecipeIds = [];
         if (!(this.role == 'premium') && res.length >= this.maxFreeSaves) {
           this.allowedToAddMoreRecipes = false;
+        } else {
+          this.allowedToAddMoreRecipes = true;
         }
         res.forEach(recipe => {
           this.savedRecipeIds.push(recipe.recipeId); 
