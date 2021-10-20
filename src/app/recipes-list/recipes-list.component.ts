@@ -86,7 +86,7 @@ export class RecipesListComponent implements OnInit {
   saveRecipe(recipeId: string): void {
 
     if (!this.allowedToAddMoreRecipes) {
-      alert("MAKE THIS LOOK BETTER LATER. You are not allowed to add more recipes. Please subscribe.");
+      document.getElementById("showModal").click();
       return;
     }
 

@@ -66,11 +66,12 @@ export class RecipeComponent implements OnInit {
       } 
 
       if (!this.allowedToAddMoreRecipes) {
-        alert("MAKE THIS LOOK BETTER LATER. You are not allowed to add more recipes. Please subscribe.");
+        document.getElementById("showModal").click();
         return;
       }
       else {
-        this.afs.collection(`user/${this.userId}/savedRecipes`).doc(this.recipeId.toString()).set({'recipeId': this.recipeId});
+        let idNumber = Number(this.recipeId);
+        this.afs.collection(`user/${this.userId}/savedRecipes`).doc(this.recipeId.toString()).set({'recipeId': idNumber});
         this.isRecipeSaved = true;
       }
   }
