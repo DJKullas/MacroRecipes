@@ -148,7 +148,7 @@ router.get('/contact', (req, res) => {
 
     //var api = "https://api.spoonacular.com/recipes/findByNutrients?random=true&";
 
-    var api = "https://api.spoonacular.com/recipes/complexSearch?random=true&addRecipeNutrition=true&";
+    var api = "https://api.spoonacular.com/recipes/complexSearch?sort=random&addRecipeNutrition=true&";
 
     var role = req.query.role;
 
