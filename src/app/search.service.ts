@@ -16,7 +16,7 @@ export class SearchService {
     return this.http.get('/api/search', {params: {query: query}});
   }
 
-  searchByMacros(minCarbs: string, maxCarbs: string, minFat: string, maxFat: string, minProtein: string, maxProtein: string, minCalories: string, maxCalories: string, 
+  searchByMacros(randomizeResults: string, minCarbs: string, maxCarbs: string, minFat: string, maxFat: string, minProtein: string, maxProtein: string, minCalories: string, maxCalories: string, 
                  excludeIngredients: string, includeIngredients: string, queryString: string, minCholesterol: string, maxCholesterol: string,
                  minSodium: string, maxSodium: string, minSugar: string, maxSugar: string, minFiber: string, maxFiber: string, role?: string) {
     return this.http.get('/api/searchByMacros', {params: {minCarbs: minCarbs,maxCarbs: maxCarbs, 
@@ -29,7 +29,7 @@ export class SearchService {
                                                           minCholesterol: minCholesterol, maxCholesterol: maxCholesterol,
                                                           minSodium: minSodium, maxSodium: maxSodium,
                                                           minSugar: minSugar, maxSugar: maxSugar,
-                                                          minFiber: minFiber, maxFiber: maxFiber, role: role
+                                                          minFiber: minFiber, maxFiber: maxFiber, role: role, randomizeResults: randomizeResults
                                                         }});
   }
 

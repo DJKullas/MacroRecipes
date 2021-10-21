@@ -89,8 +89,13 @@
                 </div>
             </div>
 
+            
 
-            <button class="btn btn-primary" (click)="searchByMacros()">Search By Macros</button>
+            <button class="btn btn-primary search-button" (click)="searchByMacros()">Search By Macros</button>
+            <div class="form-check form-check-inline">
+                <input (change)="randomizeResults = !randomizeResults" [disabled]="role != 'premium'" type="checkbox" class="form-check-input" id="random-checkbox">
+                <label class="form-check-label" for="random-checkbox">Randomize Results <a href="">{{ randomCheckboxText }}</a></label>
+              </div>
         </form>
    
         <div *ngIf="recipes == null || recipes == undefined; else elseBlock">

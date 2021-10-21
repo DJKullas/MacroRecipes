@@ -148,11 +148,15 @@ router.get('/contact', (req, res) => {
 
     //var api = "https://api.spoonacular.com/recipes/findByNutrients?random=true&";
 
-    var api = "https://api.spoonacular.com/recipes/complexSearch?sort=random&addRecipeNutrition=true&";
+    var api = "https://api.spoonacular.com/recipes/complexSearch?addRecipeNutrition=true&";
 
     var role = req.query.role;
 
     console.log(req.query.role);
+
+    if (!(req.query.randomizeResults == "undefined")) {
+      api += "sort=random" + "&"
+    }
 
     if (!(req.query.minCarbs == "undefined")) {
       api += "minCarbs=" + req.query.minCarbs + "&"

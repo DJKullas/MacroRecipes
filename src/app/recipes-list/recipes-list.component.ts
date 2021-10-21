@@ -45,9 +45,11 @@ export class RecipesListComponent implements OnInit {
   role: string;
   maxFreeSaves: number = 5;
   allowedToAddMoreRecipes = true;
+  randomizeResults: boolean = false;
 
   includeIngredientsPlaceholder: string;
   excludeIngredientsPlaceholder: string;
+  randomCheckboxText: string;
 
   recipes: Object[];
 
@@ -136,7 +138,13 @@ export class RecipesListComponent implements OnInit {
 
   searchByMacros() {
     this.recipes = null;
-    this.searchService.searchByMacros(this.minCarbs?.toString(), this.maxCarbs?.toString(), 
+    let randomizeString: string;
+
+    if (this.randomizeResults) {
+      randomizeString = "sort"
+    }
+
+    this.searchService.searchByMacros(randomizeString?.toString(), this.minCarbs?.toString(), this.maxCarbs?.toString(), 
                                       this.minFat?.toString(), this.maxFat?.toString(),
                                       this.minProtein?.toString(), this.maxProtein?.toString(),
                                       this.minCalories?.toString(), this.maxCalories?.toString(),
@@ -191,10 +199,12 @@ export class RecipesListComponent implements OnInit {
     if (this.role == "premium") {
       this.includeIngredientsPlaceholder = "Include Ingredients (comma separated)";
       this.excludeIngredientsPlaceholder = "Exclude Ingredients (comma separated)";
+      this.randomCheckboxText = "";
     } else {
       this.includeIngredientsPlaceholder = "Subscribe to Premium to Include Ingredients";
       this.excludeIngredientsPlaceholder = "Subscribe to Premium to Exclude Ingredients";
-    }
+      this.randomCheckboxText = "- Upgrade Plan to Use"
+    } 
   }
 
   async getCustomClaimRole() {
