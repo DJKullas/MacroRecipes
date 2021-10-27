@@ -150,6 +150,10 @@ router.get('/contact', (req, res) => {
 
     var api = "https://api.spoonacular.com/recipes/complexSearch?addRecipeNutrition=true&";
 
+    if (!(req.query.numResults == "undefined")) {
+      api += "number=" + req.query.numResults + "&"
+    }
+
     var role = req.query.role;
 
     console.log(req.query.role);

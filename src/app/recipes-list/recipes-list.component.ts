@@ -32,6 +32,7 @@ export class RecipesListComponent implements OnInit {
   maxFiber: number;
   minCholesterol: number;
   maxCholesterol: number;
+  numResults: number;
 
   excludeIngredients: string;
   includeIngredients: string;
@@ -50,6 +51,9 @@ export class RecipesListComponent implements OnInit {
   includeIngredientsPlaceholder: string;
   excludeIngredientsPlaceholder: string;
   randomCheckboxText: string;
+  premiumResultsNumberText: string;
+  ultraResultsNumberText: string;
+  maxNumResults: number;
 
   recipes: Object[];
 
@@ -140,11 +144,15 @@ export class RecipesListComponent implements OnInit {
     this.recipes = null;
     let randomizeString: string;
 
+    if (this.numResults > this.maxNumResults) {
+      this.numResults = 10;
+    }
+
     if (this.randomizeResults) {
       randomizeString = "sort"
     }
 
-    this.searchService.searchByMacros(randomizeString?.toString(), this.minCarbs?.toString(), this.maxCarbs?.toString(), 
+    this.searchService.searchByMacros(this.numResults?.toString(), randomizeString?.toString(), this.minCarbs?.toString(), this.maxCarbs?.toString(), 
                                       this.minFat?.toString(), this.maxFat?.toString(),
                                       this.minProtein?.toString(), this.maxProtein?.toString(),
                                       this.minCalories?.toString(), this.maxCalories?.toString(),
@@ -196,14 +204,30 @@ export class RecipesListComponent implements OnInit {
 
     console.log("ROLE: " + this.role)
 
-    if (this.role == "premium") {
+    this.numResults = 10;
+
+    if (this.role == "ultra") {
+      this.ultraResultsNumberText = "# of Results: 100"
+      this.premiumResultsNumberText = "# of Results: 50"; 
       this.includeIngredientsPlaceholder = "Include Ingredients (comma separated)";
       this.excludeIngredientsPlaceholder = "Exclude Ingredients (comma separated)";
+      this.maxNumResults = 100;
+    }
+    else if (this.role == "premium") {
+      this.includeIngredientsPlaceholder = "Include Ingredients (comma separated)";
+      this.excludeIngredientsPlaceholder = "Exclude Ingredients (comma separated)";
+      this.premiumResultsNumberText = "# of Results: 50"; 
+      this.ultraResultsNumberText = "Upgrade for 100";
       this.randomCheckboxText = "";
-    } else {
+      this.maxNumResults = 50;
+    } 
+    else {
       this.includeIngredientsPlaceholder = "Subscribe to Premium to Include Ingredients";
       this.excludeIngredientsPlaceholder = "Subscribe to Premium to Exclude Ingredients";
+      this.ultraResultsNumberText = "Upgrade for 100";
+      this.premiumResultsNumberText = "Upgrade for 50";
       this.randomCheckboxText = "- Upgrade Plan to Use"
+      this.maxNumResults = 10; 
     } 
   }
 

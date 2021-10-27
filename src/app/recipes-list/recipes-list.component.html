@@ -89,13 +89,29 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="form-group col-xs">
+                    <div class="form-check random-results-field">
+                        <input (change)="randomizeResults = !randomizeResults" [disabled]="role != 'premium'" type="checkbox" class="form-check-input" id="random-checkbox">
+                        <label class="form-check-label" for="random-checkbox">Randomize Results <a href="">{{ randomCheckboxText }}</a></label>
+                      </div>
+                </div>
+                <div class="form-group col-xs ml-auto">
+                    <select name="numResults" [(ngModel)]="numResults" class="form-select" id="number-results">
+                        <option value="10" selected># of Results: 10</option>
+                        <option [disabled]="role != 'premium' && role != 'ultra'" value="50"><a href="">{{ premiumResultsNumberText }}</a></option>
+                        <option [disabled]="role != 'ultra'" value="100">{{ ultraResultsNumberText }}</option>
+                      </select>
+                </div>
+            </div>
+
+            
+           
+            <button class="btn btn-primary search-button" (click)="searchByMacros()">Search By Macros</button>
             
 
-            <button class="btn btn-primary search-button" (click)="searchByMacros()">Search By Macros</button>
-            <div class="form-check form-check-inline">
-                <input (change)="randomizeResults = !randomizeResults" [disabled]="role != 'premium'" type="checkbox" class="form-check-input" id="random-checkbox">
-                <label class="form-check-label" for="random-checkbox">Randomize Results <a href="">{{ randomCheckboxText }}</a></label>
-              </div>
+              
+
         </form>
    
         <div *ngIf="recipes == null || recipes == undefined; else elseBlock">
