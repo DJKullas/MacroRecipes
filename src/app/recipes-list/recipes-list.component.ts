@@ -33,6 +33,7 @@ export class RecipesListComponent implements OnInit {
   minCholesterol: number;
   maxCholesterol: number;
   numResults: number;
+  maxMinutes: number;
 
   excludeIngredients: string;
   includeIngredients: string;
@@ -56,6 +57,61 @@ export class RecipesListComponent implements OnInit {
   maxNumResults: number;
 
   recipes: Object[];
+  selectedCuisine: string;
+  selectedDiet: string;
+  selectedIntolerance: string;
+
+  intoleranceTypes: string[] = [ "Dairy",
+    "Egg",
+    "Gluten",
+    "Grain",
+    "Peanut",
+    "Seafood",
+    "Sesame",
+    "Shellfish",
+    "Soy",
+    "Sulfite",
+    "Tree Nut",
+    "Wheat" ]
+
+  dietTypes: string[] = [ "Gluten Free",
+    "Ketogenic",
+    "Vegetarian",
+    "Lacto-Vegetarian",
+    "Ovo-Vegetarian",
+    "Vegan",
+    "Pescatarian",
+    "Paleo",
+    "Primal",
+    "Low FODMAP",
+    "WHole30" ];
+
+  cuisineTypes: string[] = ["African",
+    "American",
+    "British",
+    "Cajun",
+    "Caribbean",
+    "Chinese",
+    "Eastern European",
+    "European",
+    "French",
+    "German",
+    "Greek",
+    "Indian",
+    "Irish",
+    "Italian",
+    "Japanese",
+    "Jewish",
+    "Korean",
+    "Latin American",
+    "Mediterranean",
+    "Mexican",
+    "Middle Eastern",
+    "Nordic",
+    "Southern",
+    "Spanish",
+    "Thai",
+    "Vietnamese"];
 
   constructor(private readonly searchService: SearchService, private readonly sanitizer: DomSanitizer,
               public auth: AngularFireAuth, private readonly afs: AngularFirestore, private router: Router) { }
@@ -205,6 +261,9 @@ export class RecipesListComponent implements OnInit {
     console.log("ROLE: " + this.role)
 
     this.numResults = 10;
+    this.selectedCuisine = "all";
+    this.selectedDiet = "all";
+    this.selectedIntolerance = "none";
 
     if (this.role == "ultra") {
       this.ultraResultsNumberText = "# of Results: 100"

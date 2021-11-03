@@ -17,62 +17,101 @@
             <div class="row">
                 <div class="form-group col-xs col-sm-6 col-md-3">
                     <h5 class="input-header" for="minCarbs">Carbs</h5>
-                    <input name="minCarbs" class="form-control" id="minCarbs" type="number" [(ngModel)]="minCarbs"
-                        placeholder="Min Carbs">
                     <input name="maxCarbs" class="form-control" id="maxCarbs" type="number" [(ngModel)]="maxCarbs"
-                        placeholder="Max Carbs">
+                    placeholder="Max Carbs">
+                    <input name="minCarbs" class="form-control" id="minCarbs" type="number" [(ngModel)]="minCarbs"
+                        placeholder="Min Carbs">   
                 </div>
                 <div class="form-group col-xs col-sm-6 col-md-3">
                     <h5 class="input-header" for="minProtein">Protein</h5>
-                    <input name="minProtein" class="form-control" id="minProtein" type="number" [(ngModel)]="minProtein"
-                        placeholder="Min Protein">
                     <input name="maxProtein" class="form-control" id="maxProtein" type="number" [(ngModel)]="maxProtein"
                         placeholder="Max Protein">
+                    <input name="minProtein" class="form-control" id="minProtein" type="number" [(ngModel)]="minProtein"
+                        placeholder="Min Protein">
+                    
                 </div>
                 <div class="form-group col-xs col-sm-6 col-md-3">
                     <h5 class="input-header" for="minFat">Fat</h5>
+                    <input name="maxFat" class="form-control" id="maxFat" type="number" [(ngModel)]="maxFat"
+                    placeholder="Max Fat">
                     <input name="minFat" class="form-control" id="minFat" type="number" [(ngModel)]="minFat"
                         placeholder="Min Fat">
-                    <input name="maxFat" class="form-control" id="maxFat" type="number" [(ngModel)]="maxFat"
-                        placeholder="Max Fat">
+                   
                 </div>
                 <div class="form-group col-xs col-sm-6 col-md-3">
                     <h5 class="input-header" for="minCalories">Calories</h5>
-                    <input name="minCalories" class="form-control" id="minCalories" type="number"
-                        [(ngModel)]="minCalories" placeholder="Min Calories">
                     <input name="maxCalories" class="form-control" id="maxCalories" type="number"
                         [(ngModel)]="maxCalories" placeholder="Max Calories">
+                    <input name="minCalories" class="form-control" id="minCalories" type="number"
+                        [(ngModel)]="minCalories" placeholder="Min Calories">
+                    
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-xs col-sm-6 col-md-3">
                     <h5 class="input-header" for="minSugar">Sugar</h5>
-                    <input name="minSugar" class="form-control" id="minSugar" type="number" [(ngModel)]="minSugar"
-                        placeholder="Min Sugar">
                     <input name="maxSugar" class="form-control" id="maxSugar" type="number" [(ngModel)]="maxSugar"
                         placeholder="Max Sugar">
+                    <input name="minSugar" class="form-control" id="minSugar" type="number" [(ngModel)]="minSugar"
+                        placeholder="Min Sugar">
+                    
                 </div>
                 <div class="form-group col-xs col-sm-6 col-md-3">
                     <h5 class="input-header" for="minSodium">Sodium</h5>
-                    <input name="minSodium" class="form-control" id="minSodium" type="number" [(ngModel)]="minSodium"
-                        placeholder="Min Sodium">
                     <input name="maxSodium" class="form-control" id="maxSodium" type="number" [(ngModel)]="maxSodium"
                         placeholder="Max Sodium">
+                    <input name="minSodium" class="form-control" id="minSodium" type="number" [(ngModel)]="minSodium"
+                        placeholder="Min Sodium">
+                    
                 </div>
                 <div class="form-group col-xs col-sm-6 col-md-3">
                     <h5 class="input-header" for="minFiber">Fiber</h5>
-                    <input name="minFiber" class="form-control" id="minFiber" type="number" [(ngModel)]="minFiber"
-                        placeholder="Min Fiber">
                     <input name="maxFiber" class="form-control" id="maxFiber" type="number" [(ngModel)]="maxFiber"
                         placeholder="Max Fiber">
+                    <input name="minFiber" class="form-control" id="minFiber" type="number" [(ngModel)]="minFiber"
+                        placeholder="Min Fiber">
+                    
                 </div>
                 <div class="form-group col-xs col-sm-6 col-md-3">
                     <h5 class="input-header" for="minCholesterol">Cholesterol</h5>
-                    <input name="minCholesterol" class="form-control" id="minCholesterol" type="number"
-                        [(ngModel)]="minCholesterol" placeholder="Min Cholesterol">
                     <input name="maxCholesterol" class="form-control" id="maxCholesterol" type="number"
                         [(ngModel)]="maxCholesterol" placeholder="Max Cholseterol">
+                    <input name="minCholesterol" class="form-control" id="minCholesterol" type="number"
+                        [(ngModel)]="minCholesterol" placeholder="Min Cholesterol">
+                    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs col-sm-6 col-md-3">
+                    <h5 class="input-header" for="maxMinutes">Max Minutes to Make</h5>
+                    <input name="maxMinutes" class="form-control" id="maxMinutes" type="number" [(ngModel)]="maxMinutes"
+                        placeholder="Max Minutes">      
+                </div>
+                <div class="form-group col-xs col-sm-6 col-md-3">
+                    <h5 class="input-header" for="minSodium">Cuisine Type</h5>
+                    <select name="selectedCuisine" [(ngModel)]="selectedCuisine" class="form-control" id="selectedCuisine">
+                        <option value="all" selected>All</option>
+                        <option *ngFor="let selectedCuisine of cuisineTypes" value="{{selectedCuisine}}" [disabled]="role != 'premium' && role != 'ultra'">{{ selectedCuisine }}</option>
+                    </select>
+                   
+                </div>
+                <div class="form-group col-xs col-sm-6 col-md-3">
+                    <h5 class="input-header" for="selectedDiet">Special Diet</h5>
+                    <select name="selectedDiet" [(ngModel)]="selectedDiet" class="form-control" id="selectedDiet">
+                        <option value="all" selected>All</option>
+                        <option *ngFor="let selectedDiet of dietTypes" value="{{selectedDiet}}" [disabled]="role != 'premium' && role != 'ultra'">{{ selectedDiet }}</option>
+                    </select>
+                    
+                    
+                </div>
+                <div class="form-group col-xs col-sm-6 col-md-3">
+                    <h5 class="input-header" for="selectedIntolerance">Intolerance</h5>
+                    <select name="selectedIntolerance" [(ngModel)]="selectedIntolerance" class="form-control" id="selectedIntolerance">
+                        <option value="none" selected>None</option>
+                        <option *ngFor="let selectedIntolerance of intoleranceTypes" value="{{selectedIntolerance}}" [disabled]="role != 'premium' && role != 'ultra'">{{ selectedIntolerance }}</option>
+                    </select>   
                 </div>
             </div>
 
@@ -97,7 +136,7 @@
                       </div>
                 </div>
                 <div class="form-group col-xs ml-auto">
-                    <select name="numResults" [(ngModel)]="numResults" class="form-select" id="number-results">
+                    <select name="numResults" [(ngModel)]="numResults" class="form-control" id="number-results">
                         <option value="10" selected># of Results: 10</option>
                         <option [disabled]="role != 'premium' && role != 'ultra'" value="50"><a href="">{{ premiumResultsNumberText }}</a></option>
                         <option [disabled]="role != 'ultra'" value="100">{{ ultraResultsNumberText }}</option>
