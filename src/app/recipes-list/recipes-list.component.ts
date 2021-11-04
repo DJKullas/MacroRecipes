@@ -208,7 +208,8 @@ export class RecipesListComponent implements OnInit {
       randomizeString = "sort"
     }
 
-    this.searchService.searchByMacros(this.numResults?.toString(), randomizeString?.toString(), this.minCarbs?.toString(), this.maxCarbs?.toString(), 
+    this.searchService.searchByMacros(this.maxMinutes?.toString(), this.selectedDiet?.toString(), this.selectedIntolerance?.toString(), this.selectedCuisine?.toString(), 
+                                      this.numResults?.toString(), randomizeString?.toString(), this.minCarbs?.toString(), this.maxCarbs?.toString(), 
                                       this.minFat?.toString(), this.maxFat?.toString(),
                                       this.minProtein?.toString(), this.maxProtein?.toString(),
                                       this.minCalories?.toString(), this.maxCalories?.toString(),

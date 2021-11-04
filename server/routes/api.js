@@ -158,6 +158,22 @@ router.get('/contact', (req, res) => {
 
     console.log(req.query.role);
 
+    if (!(req.query.maxMinutes == "undefined")) {
+      api += "maxReadyTime=" + req.query.maxMinutes + "&"
+    } 
+
+    if (!(req.query.selectedDiet == "undefined")) {
+      api += "diet=" + req.query.selectedDiet + "&"
+    }
+
+    if (!(req.query.selectedCuisine == "undefined")) {
+      api += "cuisine=" + req.query.selectedCuisine + "&"
+    }
+
+    if (!(req.query.selectedIntolerance == "undefined")) {
+      api += "intolerances=" + req.query.selectedIntolerance + "&"
+    }
+
     if (!(req.query.randomizeResults == "undefined")) {
       api += "sort=random" + "&"
     }
