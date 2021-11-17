@@ -86,7 +86,7 @@
             <div class="row">
                 <div class="form-group col-xs col-sm-6 col-md-3">
                     <h5 class="input-header" for="maxMinutes">Max Minutes to Make</h5>
-                    <input name="maxMinutes" class="form-control" id="maxMinutes" type="number" [(ngModel)]="maxMinutes"
+                    <input [disabled]="role != 'premium' && role != 'ultra'" name="maxMinutes" class="form-control" id="maxMinutes" type="number" [(ngModel)]="maxMinutes"
                         placeholder="Max Minutes">      
                 </div>
                 <div class="form-group col-xs col-sm-6 col-md-3">
@@ -118,12 +118,12 @@
             <div class="row">
                 <div class="form-group col-xs col-sm-6 col-md-6">
                     <h5 class="input-header" for="includeIngredients">Include Ingredients</h5>
-                    <input [disabled]="role != 'premium'" name="includeIngredients" class="form-control" id="includeIngredients" type="text" [(ngModel)]="includeIngredients"
+                    <input [disabled]="role != 'premium' && role != 'ultra'" name="includeIngredients" class="form-control" id="includeIngredients" type="text" [(ngModel)]="includeIngredients"
                         [attr.placeholder]="includeIngredientsPlaceholder">
                 </div>
                 <div class="form-group col-xs col-sm-6 col-md-6">
                     <h5 class="input-header" for="excludeIngredients">Exclude Ingredients</h5>
-                    <input [disabled]="role != 'premium'" name="excludeIngredientsotein" class="form-control" id="excludeIngredients" type="text" [(ngModel)]="excludeIngredients"
+                    <input [disabled]="role != 'premium' && role != 'ultra'" name="excludeIngredientsotein" class="form-control" id="excludeIngredients" type="text" [(ngModel)]="excludeIngredients"
                    placeholder="{{excludeIngredientsPlaceholder}}">
                 </div>
             </div>
@@ -131,7 +131,7 @@
             <div class="row">
                 <div class="form-group col-xs">
                     <div class="form-check random-results-field">
-                        <input (change)="randomizeResults = !randomizeResults" [disabled]="role != 'premium'" type="checkbox" class="form-check-input" id="random-checkbox">
+                        <input (change)="randomizeResults = !randomizeResults" [disabled]="role != 'premium' && role != 'ultra'" type="checkbox" class="form-check-input" id="random-checkbox">
                         <label class="form-check-label" for="random-checkbox">Randomize Results <a href="">{{ randomCheckboxText }}</a></label>
                       </div>
                 </div>
