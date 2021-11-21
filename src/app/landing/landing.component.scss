@@ -2465,8 +2465,8 @@ body {
 }
 
 * {
-  margin: 0;
-  padding: 0;
+  //margin: 0;
+  //padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -2900,6 +2900,10 @@ p {
   background: rgba(255, 255, 255, 0.2);
 }
 
+.ud-black-btn {
+  background: rgba(0, 0, 0, 0.2);
+}
+
 .navbar-btn .ud-white-btn:hover {
   background: white;
   color: var(--heading-color);
@@ -2944,18 +2948,20 @@ p {
 /* ===== Hero CSS ===== */
 .ud-hero {
   background: var(--primary-color);
-  padding-top: 180px;
+  //padding-top: 180px;
+  padding-bottom: 90px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .ud-hero {
-    padding-top: 160px;
+    //padding-top: 160px;
+    padding-bottom: 40px;
   }
 }
 
 @media (max-width: 767px) {
   .ud-hero {
-    padding-top: 130px;
+    //padding-top: 130px;
   }
 }
 
@@ -2966,7 +2972,7 @@ p {
 }
 
 .ud-hero-content .ud-hero-title {
-  color: var(--white);
+  //color: var(--white);
   font-weight: 700;
   font-size: 45px;
   line-height: 60px;
@@ -2993,7 +2999,7 @@ p {
   font-size: 20px;
   line-height: 35px;
   text-align: center;
-  color: var(--white);
+  //color: var(--white);
   opacity: 0.8;
   max-width: 600px;
   margin: auto;
@@ -3036,7 +3042,7 @@ p {
 }
 
 .ud-hero-buttons .ud-white-btn {
-  background: var(--white);
+  background: rgb(187, 187, 187);
   color: var(--heading-color);
 }
 
@@ -3099,13 +3105,13 @@ p {
 
 /* ===== Features CSS ===== */
 .ud-features {
-  padding-top: 120px;
+  //padding-top: 120px;
   padding-bottom: 90px;
 }
 
 @media (max-width: 767px) {
   .ud-features {
-    padding-top: 80px;
+    //padding-top: 80px;
     padding-bottom: 40px;
   }
 }
@@ -3213,7 +3219,7 @@ p {
 
 .ud-single-feature .ud-feature-link {
   font-weight: 500;
-  color: var(--body-color);
+  //color: var(--body-color);
 }
 
 .ud-single-feature .ud-feature-link:hover {
@@ -3313,13 +3319,13 @@ p {
 
 /* ===== Pricing CSS ===== */
 .ud-pricing {
-  padding-top: 120px;
+  //padding-top: 120px;
   padding-bottom: 90px;
 }
 
 @media (max-width: 767px) {
   .ud-pricing {
-    padding-top: 80px;
+    //padding-top: 80px;
     padding-bottom: 40px;
   }
 }
@@ -3434,7 +3440,7 @@ p {
 
 /* ===== FAQ CSS ===== */
 .ud-faq {
-  padding-top: 120px;
+  //padding-top: 120px;
   padding-bottom: 90px;
   background: #f3f4fe;
   position: relative;
@@ -3443,7 +3449,7 @@ p {
 
 @media (max-width: 767px) {
   .ud-faq {
-    padding-top: 80px;
+    //padding-top: 80px;
     padding-bottom: 50px;
   }
 }
@@ -3532,12 +3538,12 @@ p {
 
 /* ===== Testimonials CSS ===== */
 .ud-testimonials {
-  padding-top: 120px;
+  //padding-top: 120px;
 }
 
 @media (max-width: 767px) {
   .ud-testimonials {
-    padding-top: 80px;
+    //padding-top: 80px;
   }
 }
 
@@ -3648,13 +3654,13 @@ p {
 
 /* ===== Team CSS ===== */
 .ud-team {
-  padding-top: 120px;
+  //padding-top: 120px;
   padding-bottom: 80px;
 }
 
 @media (max-width: 767px) {
   .ud-team {
-    padding-top: 80px;
+    //padding-top: 80px;
     padding-bottom: 40px;
   }
 }
@@ -3901,7 +3907,7 @@ p {
 /* ===== Footer CSS ===== */
 .ud-footer {
   background: var(--heading-color);
-  padding-top: 100px;
+  //padding-top: 100px;
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -4076,7 +4082,7 @@ p {
 
 /* ====== Banner CSS ======= */
 .ud-page-banner {
-  padding-top: 130px;
+  //padding-top: 130px;
   padding-bottom: 80px;
   background: var(--primary-color);
   background-image: url("../../assets/images/banner/banner-bg.svg");
@@ -4099,7 +4105,7 @@ p {
 
 /* ====== Login CSS ====== */
 .ud-login {
-  padding-top: 80px;
+  //padding-top: 80px;
   padding-bottom: 80px;
 }
 
