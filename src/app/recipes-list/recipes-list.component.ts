@@ -196,6 +196,12 @@ export class RecipesListComponent implements OnInit {
     return result;
   }
 
+  showFeatureNotOnPlanModal() {
+    if (this.role != "premium" && this.role != "ultra") {
+      document.getElementById("showModal2").click();
+    } 
+  }
+
   searchByMacros() {
     this.recipes = null;
     let randomizeString: string;
