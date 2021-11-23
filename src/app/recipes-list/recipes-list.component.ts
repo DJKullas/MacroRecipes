@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeart2 } from '@fortawesome/free-regular-svg-icons';
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
 @Component({
@@ -42,6 +43,7 @@ export class RecipesListComponent implements OnInit {
   userId: string;
   faHeart = faHeart;
   faHeart2 = faHeart2;
+  faInfo = faInfo;
   savedRecipeIds: string[];
 
   role: string;
@@ -323,6 +325,7 @@ export class RecipesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCustomClaimRole();
+    this.initializePlaceholders();
     this.loadListIfPresent();
     this.getSavedRecipes();
   }

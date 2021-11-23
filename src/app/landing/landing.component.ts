@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { faLemon } from '@fortawesome/free-regular-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { faChartBar } from '@fortawesome/free-regular-svg-icons';
+import { faStopCircle } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-landing',
@@ -8,6 +12,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
+
+  faClock = faClock;
+  faLemon = faLemon;
+  faChartBar = faChartBar;
+  faStopCircle = faStopCircle;
+
 
   constructor(public auth: AngularFireAuth, private readonly afs: AngularFirestore) { }
 

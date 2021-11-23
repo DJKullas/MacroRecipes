@@ -212,6 +212,10 @@
     -webkit-animation-duration: 3s;
     animation-duration: 3s;
   }
+
+  .container {
+    background-color: #ccf3ff;
+  }
   
   @media (print), (prefers-reduced-motion: reduce) {
     .animated {
@@ -3004,6 +3008,7 @@ p {
   max-width: 600px;
   margin: auto;
   margin-bottom: 30px;
+  color: black;
 }
 
 @media (max-width: 767px) {
