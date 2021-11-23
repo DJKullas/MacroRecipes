@@ -46,6 +46,8 @@ export class RecipesListComponent implements OnInit {
 
   role: string;
   maxFreeSaves: number = 5;
+  maxPremiumSaves: number = 20;
+  maxUltraSaves: number = 50;
   allowedToAddMoreRecipes = true;
   randomizeResults: boolean = false;
 
@@ -131,11 +133,20 @@ export class RecipesListComponent implements OnInit {
       var savedRecipeCollection = doc.collection('savedRecipes');
       savedRecipeCollection.valueChanges().subscribe(res => {
         this.savedRecipeIds = [];
-        if (!(this.role == 'premium') && res.length >= this.maxFreeSaves) {
+
+        if (this.role == 'ultra' && res.length >= this.maxUltraSaves) {
           this.allowedToAddMoreRecipes = false;
-        } else {
+        } 
+        else if (this.role == 'premium' && res.length >= this.maxPremiumSaves) {
+          this.allowedToAddMoreRecipes = false;
+        } 
+        else if (this.role != 'premium' && this.role != 'ultra' && res.length >= this.maxFreeSaves) {
+          this.allowedToAddMoreRecipes = false;
+        }
+        else {
           this.allowedToAddMoreRecipes = true;
         }
+
         res.forEach(recipe => {
           this.savedRecipeIds.push(recipe.recipeId); 
         });
@@ -277,6 +288,7 @@ export class RecipesListComponent implements OnInit {
       this.premiumResultsNumberText = "# of Results: 50"; 
       this.includeIngredientsPlaceholder = "Include Ingredients (comma separated)";
       this.excludeIngredientsPlaceholder = "Exclude Ingredients (comma separated)";
+      this.randomCheckboxText = "";
       this.maxNumResults = 100;
     }
     else if (this.role == "premium") {

@@ -27,6 +27,8 @@ export class RecipeComponent implements OnInit {
   priceWidgetHtml: string;
   role: string;
   maxFreeSaves: number = 5;
+  maxPremiumSaves: number = 20;
+  maxUltraSaves: number = 50;
   allowedToAddMoreRecipes = true;
   faHeart2 = faHeart2;
   isRecipeSaved: boolean = false;
@@ -43,11 +45,20 @@ export class RecipeComponent implements OnInit {
     var savedRecipeCollection = doc.collection('savedRecipes');
     savedRecipeCollection.valueChanges().subscribe(res => {
 
-      if (!(this.role == 'premium') && res.length >= this.maxFreeSaves) {
+      if (this.role == 'ultra' && res.length >= this.maxUltraSaves) {
         this.allowedToAddMoreRecipes = false;
-      } else {
+      } 
+      else if (this.role == 'premium' && res.length >= this.maxPremiumSaves) {
+        this.allowedToAddMoreRecipes = false;
+      } 
+      else if (this.role != 'premium' && this.role != 'ultra' && res.length >= this.maxFreeSaves) {
+        this.allowedToAddMoreRecipes = false;
+      }
+      else {
         this.allowedToAddMoreRecipes = true;
       }
+
+
       res.forEach(recipe => {
 
         if (this.recipeId == recipe.recipeId) {
