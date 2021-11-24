@@ -8,7 +8,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 
 const routes: Routes = [ 
-  { path: '*', component: RecipesListComponent },
+  { path: '', component: LandingComponent },
   { path: 'recipes', component: RecipesListComponent },
   { path: 'recipe/:recipeId', component: RecipeComponent },
   { path: 'login', component: LoginComponent},
@@ -18,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {anchorScrolling: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

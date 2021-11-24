@@ -5,6 +5,9 @@
         <h1 class="text-center">Please Login</h1>
       </div>
     </div>
+    <div *ngIf="extraTextInfo != null && extraTextInfo != undefined" class="col">
+      <h3 class="text-center">{{ extraTextInfo }}</h3>
+    </div>
     <div class="row">
       <div class="col">
       

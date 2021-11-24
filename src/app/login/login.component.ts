@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import firebase from 'firebase/app';
 import * as firebaseui from 'firebaseui';
 import { environment } from 'src/environments/environment';
@@ -12,17 +12,20 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public auth: AngularFireAuth, private router: Router) { }
+  constructor(private readonly route: ActivatedRoute, public auth: AngularFireAuth, private router: Router) { }
 
   userId: string;
   showPage: boolean = false;
   firebaseUi: any;
+  returnUrl: string;
+  extraTextInfo: string;
+  
 
   checkIfAlreadyLoggedIn(): void {
     this.auth.user.subscribe(res => {
 
       if (res != null && res != undefined) {
-        this.router.navigate(['/profile']);
+        this.router.navigate(['landing'], { fragment: 'pricing'});
       } else {
         this.showPage = true;
       }
@@ -53,7 +56,7 @@ export class LoginComponent implements OnInit {
           document.getElementById('loader').style.display = 'none';
         }
       },
-      signInSuccessUrl: '/profile',
+      signInSuccessUrl: this.returnUrl,
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -73,9 +76,39 @@ export class LoginComponent implements OnInit {
     this.firebaseUi.start('#firebaseui-auth-container', uiConfig);
   }
 
+  // setReturnUrl(): void {
+  //   if (this.route.snapshot.queryParamMap.get("previousPage") == 'landing') {
+  //     this.returnUrl = "landing#pricing";
+  //   } 
+  //   else if (this.route.snapshot.queryParamMap.get("previousPage") == 'saveAttempt') {
+  //     this.returnUrl = "recipes"
+  //   }
+  //   else {
+  //     this.returnUrl = "profile"
+  //   }
+  // }
+
+  // always redirect to pricing for now
+  setReturnUrl(): void {
+    this.returnUrl = "landing";
+  }
+
+  setExtraTextInfo(): void {
+    let x = this.route.snapshot.queryParamMap.get("previousPage");
+    if (this.route.snapshot.queryParamMap.get("previousPage") == 'landing') {
+      this.extraTextInfo = "You Must Login Before Selecting a Plan";
+    } 
+    else if (this.route.snapshot.queryParamMap.get("previousPage") == 'saveAttempt') {
+      this.extraTextInfo = "You Must Login to Save a Recipe"
+    }
+    
+  }
+
   ngOnInit(): void {
     this.checkIfAlreadyLoggedIn();
     this.initializeFirebaseUi();
+    this.setReturnUrl();
+    //this.setExtraTextInfo();
  
   }
 }

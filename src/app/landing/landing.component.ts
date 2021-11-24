@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { faLemon } from '@fortawesome/free-regular-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faChartBar } from '@fortawesome/free-regular-svg-icons';
@@ -19,12 +20,21 @@ export class LandingComponent implements OnInit {
   faStopCircle = faStopCircle;
 
 
-  constructor(public auth: AngularFireAuth, private readonly afs: AngularFirestore) { }
+  constructor(public auth: AngularFireAuth, private readonly afs: AngularFirestore, private router: Router) { }
 
   async subscribeToPremium() {
 
 
     this.auth.user.subscribe(async res => {
+
+      if (res == null || res == undefined) {
+        this.router.navigate(['login'], { queryParams: { previousPage: 'landing' } });
+        return;
+      }
+
+      document.getElementsByClassName("container")[0].innerHTML = "Redirecting you to our secure payment proccesor."
+
+
       const docRef = await this.afs
   .collection('user')
   .doc(res.uid)
@@ -41,6 +51,7 @@ docRef.onSnapshot((snap) => {
     // Show an error to your customer and 
     // inspect your Cloud Function logs in the Firebase console.
     alert(`An error occured: ${error.message}`);
+    location.reload();
   }
   if (url) {
     // We have a Stripe Checkout URL, let's redirect.
@@ -56,8 +67,20 @@ docRef.onSnapshot((snap) => {
 
   async subscribeToUltra() {
 
+    
 
     this.auth.user.subscribe(async res => {
+
+      if (res == null || res == undefined) {
+
+     
+          this.router.navigate(['login'], { queryParams: { previousPage: 'landing' } });
+   
+        return;
+      }
+
+      document.getElementsByClassName("container")[0].innerHTML = "Redirecting you to our secure payment proccesor."
+
       const docRef = await this.afs
   .collection('user')
   .doc(res.uid)
@@ -74,6 +97,7 @@ docRef.onSnapshot((snap) => {
     // Show an error to your customer and 
     // inspect your Cloud Function logs in the Firebase console.
     alert(`An error occured: ${error.message}`);
+    location.reload();
   }
   if (url) {
     // We have a Stripe Checkout URL, let's redirect.

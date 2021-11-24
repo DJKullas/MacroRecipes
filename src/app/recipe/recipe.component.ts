@@ -72,7 +72,7 @@ export class RecipeComponent implements OnInit {
   saveRecipe(): void {
 
       if (!this.userId) {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'], { queryParams: { previousPage: 'saveAttempt' } });
             return;
       } 
 
@@ -262,6 +262,12 @@ docRef.onSnapshot((snap) => {
 
   getUserId() {
     this.auth.user.subscribe(res => {
+
+      if (res == null || res == undefined) {
+        this.getRecipe(this.recipeId);
+        return;
+      }
+
       this.userId = res.uid;
       this.getRecipe(this.recipeId);
       this.getCustomClaimRole();

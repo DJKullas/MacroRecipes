@@ -168,7 +168,7 @@ export class RecipesListComponent implements OnInit {
     if (this.auth.user != null) {
       this.auth.user.subscribe(res => {
         if (res == null || res == undefined) {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login'], { queryParams: { previousPage: 'saveAttempt' } });
           return;
         }
         this.userId = res.uid;
@@ -177,7 +177,7 @@ export class RecipesListComponent implements OnInit {
       });
   
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], { queryParams: { previousPage: 'saveAttempt' } });
     }
   }
 
