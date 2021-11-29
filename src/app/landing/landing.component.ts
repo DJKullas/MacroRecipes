@@ -32,8 +32,7 @@ export class LandingComponent implements OnInit {
         return;
       }
 
-      document.getElementsByClassName("container")[0].innerHTML = "Redirecting you to our secure payment proccesor."
-
+      this.showRedirectingToPayment();
 
       const docRef = await this.afs
   .collection('user')
@@ -79,7 +78,7 @@ docRef.onSnapshot((snap) => {
         return;
       }
 
-      document.getElementsByClassName("container")[0].innerHTML = "Redirecting you to our secure payment proccesor."
+      this.showRedirectingToPayment();
 
       const docRef = await this.afs
   .collection('user')
@@ -105,10 +104,12 @@ docRef.onSnapshot((snap) => {
   }
 });
     });
+  
+  }
 
+  showRedirectingToPayment(): void {
+    document.getElementsByClassName("container")[0].innerHTML = '<h1 style="text-align: center;">Redirecting you to our secure payment proccesor.<h1><div class="text-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>';
 
-
-    
   }
 
   ngOnInit(): void {
